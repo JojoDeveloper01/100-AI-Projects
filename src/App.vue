@@ -49,11 +49,7 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === 'In 
           
           <div class="hidden md:flex items-center space-x-8">
             <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
-            <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
-            <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
-            <button class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all">
-              Get Started
-            </button>
+            <a href="/contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
           </div>
         </div>
       </nav>
