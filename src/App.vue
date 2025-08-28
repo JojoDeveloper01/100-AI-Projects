@@ -59,14 +59,14 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === 'In 
       </nav>
 
       <!-- Hero Section -->
-      <div class="relative z-10 px-6 py-20">
-        <div class="max-w-4xl mx-auto text-center">
+      <section class="relative h-screen z-10 px-6 py-20">
+        <div class="max-w-4xl m-auto text-center">
           <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               100 AI Projects
             </span>
           </h1>
-          <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+          <p class="text-xl md:text-2xl text-gray-300 font-bold mb-8 leading-relaxed">
             A comprehensive collection of artificial intelligence projects showcasing the power of modern AI technologies
           </p>
           
@@ -91,8 +91,8 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === 'In 
           </div>
 
           <!-- Search and Filter -->
-          <div class="max-w-2xl mx-auto space-y-4">
-            <div class="relative">
+          <div class="max-w-2xl m-auto mt-8">
+            <div class="relative mb-8">
               <input
                 v-model="searchQuery"
                 type="text"
@@ -122,7 +122,7 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === 'In 
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </header>
 
     <!-- Projects Section -->
