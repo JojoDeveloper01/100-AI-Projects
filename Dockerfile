@@ -9,20 +9,15 @@ RUN apk add --no-cache python3 make g++
 
 # Copy package files
 COPY package*.json ./
-COPY bun.lockb ./
 
-# Install bun
-RUN npm install -g bun
-
-# Clean install dependencies
-RUN rm -rf node_modules package-lock.json
-RUN bun install --frozen-lockfile
+# Install all dependencies (including devDependencies for build)
+RUN npm install --ignore-scripts
 
 # Copy source code
 COPY . .
 
 # Build the application
-RUN bun run build
+RUN npm run build
 
 # Use nginx for serving static files
 FROM nginx:alpine
