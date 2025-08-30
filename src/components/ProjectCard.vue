@@ -1,4 +1,8 @@
 <script setup>
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
 const props = defineProps({
   project: {
     type: Object,
@@ -37,7 +41,7 @@ const getDifficultyColor = (difficulty) => {
 
 <template>
   <div
-    class="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+    class="group translation-card overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
     <!-- Project Image -->
     <div class="relative overflow-hidden">
       <img :src="project.image" :alt="project.title"
@@ -109,14 +113,18 @@ const getDifficultyColor = (difficulty) => {
       <!-- Actions -->
       <div class="flex items-center justify-between">
         <div class="flex space-x-3">
-          <a :href="project.demoUrl"
-            class="flex items-center space-x-1 text-purple-400 hover:text-purple-300 text-sm font-medium transition-colors">
+          <router-link :to="project.demoUrl" :class="['flex gap-2 items-center',
+            'transition-colors',
+            route.name === 'Demo'
+              ? 'text-purple-400 font-medium'
+              : 'text-gray-300 hover:text-white'
+          ]">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
             </svg>
-            <span>Demo</span>
-          </a>
+            <span> Demo</span>
+          </router-link>
 
           <a :href="project.githubUrl"
             class="flex items-center space-x-1 text-gray-400 hover:text-white text-sm font-medium transition-colors">

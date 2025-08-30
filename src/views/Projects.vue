@@ -1,8 +1,8 @@
 <script setup>
 import { ref, computed } from 'vue'
-import BaseLayout from '../layouts/BaseLayout.vue'
-import ProjectGrid from '../components/ProjectGrid.vue'
-import { projects, categories } from '../data/projects.js'
+import BaseLayout from '@/layouts/BaseLayout.vue'
+import ProjectGrid from '@/components/ProjectGrid.vue'
+import { projects, categories } from '@/data/projects.js'
 
 const selectedCategory = ref('All')
 const searchQuery = ref('')

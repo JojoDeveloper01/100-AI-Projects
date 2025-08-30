@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import BaseLayout from '../layouts/BaseLayout.vue'
+import BaseLayout from '@/layouts/BaseLayout.vue'
 
 const form = ref({
     name: '',
@@ -63,7 +63,7 @@ const submitForm = async () => {
 
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Contact Form -->
-                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+                <div class="translation-card p-8">
                     <h2 class="text-2xl font-bold text-white mb-6">Get In Touch</h2>
 
                     <form @submit.prevent="submitForm" class="space-y-6">
@@ -113,7 +113,7 @@ const submitForm = async () => {
                 <!-- Contact Info -->
                 <div class="space-y-8">
                     <!-- Contact Methods -->
-                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+                    <div class="translation-card p-8">
                         <h3 class="text-xl font-bold text-white mb-6">Get In Touch</h3>
 
                         <div class="space-y-4">
@@ -135,7 +135,7 @@ const submitForm = async () => {
                     </div>
 
                     <!-- Social Links -->
-                    <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+                    <div class="translation-card p-8">
                         <h3 class="text-xl font-bold text-white mb-6">Connect With Me</h3>
 
                         <div class="flex space-x-4">

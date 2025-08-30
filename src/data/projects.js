@@ -1,18 +1,18 @@
 export const projects = [
-    /*   {
-          id: 1,
-          title: "AI Chat Assistant",
-          description: "A conversational AI assistant built with OpenAI GPT-4 that can help with various tasks including coding, writing, and problem-solving.",
-          category: "Natural Language Processing",
-          techStack: ["Vue.js", "Node.js", "OpenAI API", "WebSocket"],
-          status: "Completed",
-          difficulty: "Intermediate",
-          demoUrl: "#",
-          githubUrl: "#",
-          image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop",
-          tags: ["GPT-4", "Chatbot", "Real-time"],
-          completedDate: "2024-01-15"
-      }, */
+    {
+        id: 1,
+        title: "AI Translation Tool",
+        description: "A tool that can translate your project texts easily.",
+        category: "Natural Language Processing",
+        techStack: ["Vue.js", "OpenAI API", "JavaScript"],
+        status: "In Progress",
+        difficulty: "Intermediate",
+        demoUrl: "/translation",
+        githubUrl: "#",
+        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=250&fit=crop",
+        tags: ["Translation", "AI", "Multi-language"],
+        completedDate: ""
+    },
     /*  {
          id: 2,
          title: "AI Music Generator",
