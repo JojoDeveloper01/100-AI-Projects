@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
-import { t } from 'tradux'
 
 const frameworks = [
     {
@@ -169,7 +168,7 @@ const copyToClipboard = (text) => {
                         <div class="translation-card bg-gray-950/50 border border-gray-700 rounded-lg overflow-hidden">
                             <div class="flex items-center justify-between p-4 border-b border-gray-700">
                                 <span class="text-purple-400 font-medium">Uso com {{ frameworks[activeFramework].name
-                                }}</span>
+                                    }}</span>
                                 <button @click="copyToClipboard(frameworks[activeFramework].usage)"
                                     class="text-gray-400 hover:text-white text-sm flex items-center gap-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
