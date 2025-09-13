@@ -1,0 +1,79 @@
+export const language = {
+  title: "100 AI Projects",
+  categories: {
+    all: "All",
+    nlp: "Natural Language Processing",
+    computerVision: "Computer Vision",
+    machineLearning: "Machine Learning",
+    generativeAI: "Generative AI",
+    dataScience: "Data Science",
+    developersTools: "Developer Tools",
+    robotics: "Robotics",
+    finance: "Finance",
+  },
+  status: {
+    completed: "Completed",
+    inProgress: "In Progress",
+    planning: "Planning",
+  },
+  difficulty: {
+    simple: "Simple",
+    intermediate: "Intermediate",
+    advanced: "Advanced",
+    expert: "Expert",
+  },
+  navigation: {
+    projects: "Projects",
+    contact: "Contact",
+  },
+  hero: {
+    subtitle: "A comprehensive collection of artificial intelligence projects showcasing the power of modern AI technologies.",
+    totalProjects: "Total Projects",
+    categories: "Categories",
+    search: "Search projects...",
+  },
+  projects: {
+    projectFound: "Project found",
+    projectsNotFound: "No projects found",
+    fixYourSearch: "Try adjusting your search or filter to find what you're looking for.",
+    filters: {
+      newestFirst: "Newest First",
+      oldestFirst: "Oldest First",
+      titleAToZ: "Title A-Z",
+      difficulty: "Difficulty",
+      status: "Status",
+    },
+    cards: {
+      demo: "Demo",
+      code: "Code",
+      tradux: {
+        description: "JS library that uses an AI model to make translating your app easy",
+
+      }
+    },
+    backToTop: "Back to Top",
+  },
+  footer: {
+    title: "Exploring the frontiers of artificial intelligence, one project at a time.",
+  },
+  contact: {
+    title: "Let's Work Together",
+    subtitle: "Ready to bring your AI vision to life? Let's discuss your project and create something amazing together.",
+    form: {
+      title: "Get in Touch",
+      name: "Name",
+      email: "Email",
+      message: "Message",
+      sendMessage: "Send Message",
+      sending: "Sending...",
+      successMessage: "Message Sent Successfully!",
+      successPhrase: "Thank you for reaching out. Best regards.",
+      placeHolders: {
+        name: "Your Name",
+        message: "Tell me about your project or how I can help you..."
+      },
+    },
+    sendMeAnEmail: "Send Me An Email",
+    connectWithMe: "Connect With Me",
+  }
+}
