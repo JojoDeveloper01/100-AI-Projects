@@ -1,4 +1,4 @@
-export const language = {
+{
   "title": "100 プロジェクト",
   "categories": {
     "all": "すべて",
@@ -28,12 +28,14 @@ export const language = {
   },
   "hero": {
     "subtitle": "現代のAIテクノロジーの力を示す人工知能プロジェクトの包括的なコレクション。",
-    "search": "検索プロジェクト...",
     "totalProjects": "総プロジェクト",
-    "categories": "カテゴリ"
+    "categories": "カテゴリ",
+    "search": "検索プロジェクト..."
   },
   "projects": {
     "projectFound": "プロジェクト発見",
+    "projectsNotFound": "プロジェクトが見つかりませんでした",
+    "fixYourSearch": "検索またはフィルターを調整して、探しているものを検索してください。",
     "filters": {
       "newestFirst": "初新",
       "oldestFirst": "初老化",
@@ -48,31 +50,29 @@ export const language = {
         "description": "アプリの翻訳を容易にするためにAIモデルを使用するJSライブラリ"
       }
     },
-    "backToTop": "トップへ戻る",
-    "projectsNotFound": "プロジェクトが見つかりませんでした",
-    "fixYourSearch": "検索またはフィルターを調整して、探しているものを検索してください。"
+    "backToTop": "トップへ戻る"
   },
   "footer": {
     "title": "人工知能の境界を探索する、一つのプロジェクト。"
   },
   "contact": {
-    "title": "Let's Work Together",
+    "title": "「Let's Work Together」",
     "subtitle": "あなたのAIビジョンを生かす準備はできていますか? あなたのプロジェクトについて話し合い、一緒に素晴らしいものを創りましょう。",
     "form": {
-      "title": "Get in Touch",
+      "title": "トップ > Touch",
       "name": "名称",
-      "email": "Email",
-      "message": "Message",
-      "sendMessage": "Send Message",
-      "sending": "Sending...",
+      "email": "メール",
+      "message": "メッセージ",
+      "sendMessage": "メッセージ送信",
+      "sending": "送信...",
       "successMessage": "メッセージは成功しました!",
       "successPhrase": "来てくれてありがとう!おめでとうございます。",
       "placeHolders": {
         "name": "君の名前",
-        "message": "Tell me about your project or how I can help you..."
+        "message": "あなたのプロジェクトや、私がどのようにあなたを助けることができるかについて教えてください。"
       }
     },
     "sendMeAnEmail": "メールを送信",
     "connectWithMe": "CONNECT ME"
   }
-};
+}

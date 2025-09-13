@@ -1,4 +1,4 @@
-export const language = {
+{
   "title": "100 Projekte",
   "categories": {
     "all": "Alle",
@@ -28,12 +28,14 @@ export const language = {
   },
   "hero": {
     "subtitle": "Eine umfassende Sammlung von künstlichen Intelligenzprojekten, die die Macht moderner KI-Technologien demonstrieren.",
-    "search": "Suche Projekte ...",
     "totalProjects": "Gesamtprojekte",
-    "categories": "Kategorien"
+    "categories": "Kategorien",
+    "search": "Suche Projekte ..."
   },
   "projects": {
     "projectFound": "Projekt gefunden",
+    "projectsNotFound": "Keine Projekte gefunden",
+    "fixYourSearch": "Versuchen Sie, Ihre Suche oder Filter anzupassen, um zu finden, was Sie suchen.",
     "filters": {
       "newestFirst": "Neues zuerst",
       "oldestFirst": "Erst älter",
@@ -48,31 +50,29 @@ export const language = {
         "description": "JS-Bibliothek, die ein AI-Modell verwendet, um die Übersetzung Ihrer App einfach zu gestalten"
       }
     },
-    "backToTop": "Zurück zu Top",
-    "projectsNotFound": "Keine Projekte gefunden",
-    "fixYourSearch": "Versuchen Sie, Ihre Suche oder Filter anzupassen, um zu finden, was Sie suchen."
+    "backToTop": "Zurück zu Top"
   },
   "footer": {
     "title": "Entdecken Sie die Grenzen der künstlichen Intelligenz, ein Projekt zur Zeit."
   },
   "contact": {
     "title": "Lass uns zusammen arbeiten",
-    "subtitle": "Ready to bring your AI vision to life? Let's discuss your project and create something amazing together.",
+    "subtitle": "Bereit, Ihre AI-Vision zum Leben zu erwecken?Lassen Sie uns Ihr Projekt besprechen und gemeinsam etwas Erstaunliches erschaffen.",
     "form": {
-      "title": "Get in Touch",
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "sendMessage": "Send Message",
+      "title": "Gehen Sie in Berührung",
+      "name": "Name ist",
+      "email": "E-Mail",
+      "message": "Botschaft",
+      "sendMessage": "Senden Sie eine Nachricht",
       "sending": "Senden ...",
       "successMessage": "Nachricht erfolgreich gesendet!",
-      "successPhrase": "Thank you for reaching out. Best regards.",
+      "successPhrase": "Vielen Dank für die Ankunft.Bester Blick.",
       "placeHolders": {
-        "name": "Your Name",
-        "message": "Tell me about your project or how I can help you..."
+        "name": "Dein Name",
+        "message": "Erzähl mir von deinem Projekt oder wie ich dir helfen kann..."
       }
     },
     "sendMeAnEmail": "Senden Sie mir eine E-Mail",
     "connectWithMe": "verbinden mit mir"
   }
-};
+}

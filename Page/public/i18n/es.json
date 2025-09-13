@@ -1,4 +1,4 @@
-export const language = {
+{
   "title": "100 Proyectos",
   "categories": {
     "all": "todo",
@@ -28,12 +28,14 @@ export const language = {
   },
   "hero": {
     "subtitle": "Una colección completa de proyectos de inteligencia artificial que muestran el poder de las tecnologías modernas de IA.",
-    "search": "Proyectos de búsqueda...",
     "totalProjects": "Proyectos totales",
-    "categories": "Categorías"
+    "categories": "Categorías",
+    "search": "Proyectos de búsqueda..."
   },
   "projects": {
     "projectFound": "Proyecto encontrado",
+    "projectsNotFound": "No se han encontrado proyectos",
+    "fixYourSearch": "Pruebe ajustar su búsqueda o filtro para encontrar lo que está buscando.",
     "filters": {
       "newestFirst": "Nuevo primero",
       "oldestFirst": "El más antiguo primero",
@@ -48,9 +50,7 @@ export const language = {
         "description": "Biblioteca JS que utiliza un modelo de IA para hacer que la traducción de su aplicación sea fácil"
       }
     },
-    "backToTop": "Volver al Top",
-    "projectsNotFound": "No se han encontrado proyectos",
-    "fixYourSearch": "Pruebe ajustar su búsqueda o filtro para encontrar lo que está buscando."
+    "backToTop": "Volver al Top"
   },
   "footer": {
     "title": "Explorar las fronteras de la inteligencia artificial, un proyecto a la vez."
@@ -59,20 +59,20 @@ export const language = {
     "title": "Trabajemos juntos",
     "subtitle": "Listo para llevar su visión de IA a la vida? Vamos a discutir su proyecto y crear algo increíble juntos.",
     "form": {
-      "title": "Get in Touch",
+      "title": "Toma el toque",
       "name": "Nombre",
       "email": "El email",
       "message": "Mensaje",
       "sendMessage": "Enviar mensaje",
-      "sending": "Sending...",
-      "successMessage": "Message Sent Successfully!",
-      "successPhrase": "Thank you for reaching out. Best regards.",
+      "sending": "Envío...",
+      "successMessage": "Mensaje enviado con éxito!",
+      "successPhrase": "Muchas gracias por haber llegado.Mejores miradas.",
       "placeHolders": {
-        "name": "Your Name",
-        "message": "Tell me about your project or how I can help you..."
+        "name": "tu nombre",
+        "message": "Cuéntanos sobre tu proyecto o cómo puedo ayudarte..."
       }
     },
-    "sendMeAnEmail": "Send Me An Email",
+    "sendMeAnEmail": "Envíame un email",
     "connectWithMe": "Conecte conmigo"
   }
-};
+}

@@ -1,4 +1,4 @@
-export const language = {
+{
   "title": "100 progetti",
   "categories": {
     "all": "Tutto",
@@ -28,12 +28,14 @@ export const language = {
   },
   "hero": {
     "subtitle": "Una raccolta completa di progetti di intelligenza artificiale che mostrano la potenza delle moderne tecnologie AI.",
-    "search": "Progetti di ricerca...",
     "totalProjects": "Progetti totali",
-    "categories": "Categorie"
+    "categories": "Categorie",
+    "search": "Progetti di ricerca..."
   },
   "projects": {
     "projectFound": "Progetto trovato",
+    "projectsNotFound": "Nessun progetto trovato",
+    "fixYourSearch": "Prova a regolare la ricerca o il filtro per trovare ciò che stai cercando.",
     "filters": {
       "newestFirst": "Nuovo prima",
       "oldestFirst": "Il più vecchio prima",
@@ -48,25 +50,23 @@ export const language = {
         "description": "Libreria JS che utilizza un modello AI per semplificare la traduzione dell'app"
       }
     },
-    "backToTop": "Ritorno al Top",
-    "projectsNotFound": "Nessun progetto trovato",
-    "fixYourSearch": "Prova a regolare la ricerca o il filtro per trovare ciò che stai cercando."
+    "backToTop": "Ritorno al Top"
   },
   "footer": {
     "title": "Esplorando i confini dell’intelligenza artificiale, un progetto alla volta."
   },
   "contact": {
-    "title": "Let's Work Together",
-    "subtitle": "Ready to bring your AI vision to life? Let's discuss your project and create something amazing together.",
+    "title": "Lavoriamo insieme",
+    "subtitle": "Pronti a portare la tua visione di AI alla vita? parliamo del tuo progetto e creiamo qualcosa di sorprendente insieme.",
     "form": {
       "title": "Fai il tocco",
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
+      "name": "Nome",
+      "email": "email",
+      "message": "Messaggio",
       "sendMessage": "Invia un messaggio",
-      "sending": "Sending...",
-      "successMessage": "Message Sent Successfully!",
-      "successPhrase": "Thank you for reaching out. Best regards.",
+      "sending": "Invia...",
+      "successMessage": "Messaggio inviato con successo!",
+      "successPhrase": "Grazie per averci portato fuori.Best look.",
       "placeHolders": {
         "name": "Il tuo nome",
         "message": "Raccontaci del tuo progetto o di come posso aiutarti..."
@@ -75,4 +75,4 @@ export const language = {
     "sendMeAnEmail": "Inviaci una mail",
     "connectWithMe": "Connetti con me"
   }
-};
+}

@@ -1,4 +1,4 @@
-export const language = {
+{
   "title": "100 projetos",
   "categories": {
     "all": "Tudo",
@@ -28,12 +28,14 @@ export const language = {
   },
   "hero": {
     "subtitle": "Uma coleção abrangente de projetos de inteligência artificial mostrando o poder das tecnologias modernas de IA.",
-    "search": "Projetos de busca...",
     "totalProjects": "Projetos totais",
-    "categories": "Categorias"
+    "categories": "Categorias",
+    "search": "Projetos de busca..."
   },
   "projects": {
     "projectFound": "Projeto Encontrado",
+    "projectsNotFound": "Nenhum projeto encontrado",
+    "fixYourSearch": "Tente ajustar sua pesquisa ou filtro para encontrar o que você está procurando.",
     "filters": {
       "newestFirst": "Novidade Primeiro",
       "oldestFirst": "O mais velho primeiro",
@@ -48,31 +50,29 @@ export const language = {
         "description": "JS biblioteca que usa um modelo de IA para tornar a tradução do seu aplicativo fácil"
       }
     },
-    "backToTop": "Voltar para Top",
-    "projectsNotFound": "Nenhum projeto encontrado",
-    "fixYourSearch": "Tente ajustar sua pesquisa ou filtro para encontrar o que você está procurando."
+    "backToTop": "Voltar para Top"
   },
   "footer": {
     "title": "Explorar as fronteiras da inteligência artificial, um projeto por vez."
   },
   "contact": {
     "title": "Vamos trabalhar juntos",
-    "subtitle": "Ready to bring your AI vision to life? Let's discuss your project and create something amazing together.",
+    "subtitle": "Pronto para levar sua visão de IA à vida? vamos discutir seu projeto e criar algo incrível juntos.",
     "form": {
-      "title": "Get in Touch",
+      "title": "Faça um toque",
       "name": "Nome",
       "email": "EMAIL",
       "message": "Mensagem",
-      "sendMessage": "Send Message",
+      "sendMessage": "Envie uma mensagem",
       "sending": "Envio...",
       "successMessage": "Mensagem enviada com sucesso!",
       "successPhrase": "Obrigado pela visita.Melhor olhar.",
       "placeHolders": {
-        "name": "Your Name",
+        "name": "Seu Nome",
         "message": "Conte-me sobre o seu projeto ou como posso ajudá-lo..."
       }
     },
     "sendMeAnEmail": "Envie-me um email",
     "connectWithMe": "Conecte-se comigo"
   }
-};
+}
