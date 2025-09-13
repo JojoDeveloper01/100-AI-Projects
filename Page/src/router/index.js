@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Projects from '@/views/Projects.vue'
 import Contact from '@/views/Contact.vue'
-import Tradux from '@@/1-Tradux/index.vue'
+import Tradux from '@/views/Tradux.vue'
 
 const routes = [
   {
