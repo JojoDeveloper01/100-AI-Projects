@@ -138,8 +138,15 @@ const loadCountries = async () => {
     if (!config.countries.enabled) return
 
     try {
-        const response = await fetch('./src/data/world_countries.geojson')
+        console.log('Loading countries data...')
+        const response = await fetch('/world_countries.geojson')
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
         const geoData = await response.json()
+        console.log('Countries data loaded:', geoData.features?.length, 'countries')
         const countryGroup = new THREE.Group()
 
         geoData.features.forEach(feature => {
@@ -194,9 +201,10 @@ const loadCountries = async () => {
             }
         })
 
+        console.log('Adding', countryGroup.children.length, 'country meshes to earth')
         earth.add(countryGroup)
     } catch (error) {
-        console.warn('Could not load countries:', error)
+        console.error('Could not load countries:', error)
     }
 }
 

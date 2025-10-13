@@ -18,4 +18,19 @@ export default defineConfig({
       '@@': fileURLToPath(new URL('../', import.meta.url))
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-three': ['three'],
+          'vendor-highlight': ['highlight.js'],
+          'vendor-vue': ['vue', 'vue-router'],
+          'vendor-utils': ['tradux']
+        }
+      }
+    },
+    sourcemap: false,
+    minify: 'esbuild'
+  }
 })

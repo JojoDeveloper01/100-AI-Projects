@@ -1,18 +1,28 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineAsyncComponent } from 'vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
-import EarthGlobe from '@/components/EarthGlobe.vue'
 import { frameworks } from '@/data/frameworks.js'
 
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
+// Lazy load EarthGlobe component (contains Three.js)
+const EarthGlobe = defineAsyncComponent({
+    loader: () => import('@/components/EarthGlobe.vue'),
+    loadingComponent: () => import('@/components/LoadingGlobe.vue'),
+    delay: 200, // Show loading after 200ms
+    timeout: 10000 // Timeout after 10 seconds
+})
+
 import 'highlight.js/styles/vs2015.css'
 import { onMounted, nextTick, watch } from 'vue'
 import { t } from "tradux"
 
-hljs.registerLanguage('javascript', javascript)
-
 const highlightCode = async () => {
+    // Dynamic import of highlight.js to reduce initial bundle
+    const [{ default: hljs }, { default: javascript }] = await Promise.all([
+        import('highlight.js/lib/core'),
+        import('highlight.js/lib/languages/javascript')
+    ])
+
+    hljs.registerLanguage('javascript', javascript)
     await nextTick()
     // Remove previous highlighting
     document.querySelectorAll('pre code').forEach(block => {
