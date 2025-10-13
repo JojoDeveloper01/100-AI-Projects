@@ -36,10 +36,10 @@ const submitForm = async () => {
 <template>
     <BaseLayout>
         <!-- Hero Section -->
-        <section class="relative z-10 px-6 py-10">
-            <div class="max-w-4xl mx-auto text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                    <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        <section class="relative py-10">
+            <div class="mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold  mb-6 leading-tight">
+                    <span class="">
                         {{ t.contact.title }}
                     </span>
                 </h1>
@@ -52,7 +52,7 @@ const submitForm = async () => {
             <!-- Success Message -->
             <div v-if="showSuccess" class="mb-8 p-6 bg-green-500/20 border border-green-500/30 rounded-xl text-center">
                 <div class="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="size-8 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
                         </path>
                     </svg>
@@ -64,7 +64,7 @@ const submitForm = async () => {
             <div class="grid lg:grid-cols-2 gap-12">
                 <!-- Contact Form -->
                 <div class="translation-card p-8">
-                    <h2 class="text-2xl font-bold text-white mb-6">{{ t.contact.form.title }}</h2>
+                    <h2 class="text-2xl font-bold  mb-6">{{ t.contact.form.title }}</h2>
 
                     <form @submit.prevent="submitForm" class="space-y-6">
                         <!-- Name -->
@@ -72,7 +72,7 @@ const submitForm = async () => {
                             <label class="block text-sm font-medium text-gray-300 mb-2">{{ t.contact.form.name }}
                                 *</label>
                             <input v-model="form.name" type="text" required
-                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 :placeholder="t.contact.form.placeHolders.name" />
                         </div>
 
@@ -81,7 +81,7 @@ const submitForm = async () => {
                             <label class="block text-sm font-medium text-gray-300 mb-2">{{ t.contact.form.email }}
                                 *</label>
                             <input v-model="form.email" type="email" required
-                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder="your@email.com" />
                         </div>
 
@@ -90,17 +90,17 @@ const submitForm = async () => {
                             <label class="block text-sm font-medium text-gray-300 mb-2">{{ t.contact.form.message }}
                                 *</label>
                             <textarea v-model="form.message" required rows="6"
-                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                                 :placeholder="t.contact.form.placeHolders.message"></textarea>
                         </div>
 
                         <!-- Submit Button -->
                         <button type="submit" :disabled="isSubmitting"
-                            class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-4 px-6 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="w-full bg-blue-500 font-semibold py-4 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
                             <span v-if="!isSubmitting">{{ t.contact.form.sendMessage }}</span>
                             <span v-else class="flex items-center justify-center">
-                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 " xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                         stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor"
@@ -117,11 +117,11 @@ const submitForm = async () => {
                 <div class="space-y-8">
                     <!-- Contact Methods -->
                     <div class="translation-card p-8">
-                        <h3 class="text-xl font-bold text-white mb-6">{{ t.contact.sendMeAnEmail }}</h3>
+                        <h3 class="text-xl font-bold  mb-6">{{ t.contact.sendMeAnEmail }}</h3>
                         <div class="space-y-4">
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
-                                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor"
+                                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
@@ -129,7 +129,7 @@ const submitForm = async () => {
                                     </svg>
                                 </div>
                                 <div>
-                                    <p class="text-white font-medium">{{ t.contact.form.email }}</p>
+                                    <p class=" font-medium">{{ t.contact.form.email }}</p>
                                     <p class="text-gray-400">contact@100aiprojects.dev</p>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ const submitForm = async () => {
 
                     <!-- Social Links -->
                     <div class="translation-card p-8">
-                        <h3 class="text-xl font-bold text-white mb-6">{{ t.contact.connectWithMe }}</h3>
+                        <h3 class="text-xl font-bold  mb-6">{{ t.contact.connectWithMe }}</h3>
 
                         <div class="flex space-x-4">
                             <a href="https://github.com/JojoDeveloper01" target="_blank" rel="noopener"

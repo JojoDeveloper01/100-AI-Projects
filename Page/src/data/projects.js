@@ -1,6 +1,4 @@
-import { t } from "tradux";
-
-export const projects = [
+export const projects = (t) => [
     {
         id: 1,
         title: "Tradux",
@@ -81,7 +79,7 @@ export const projects = [
       }, */
 ];
 
-export const categories = [
+export const categories = (t) => [
     t.categories.all,
     t.categories.nlp,
     t.categories.computerVision,

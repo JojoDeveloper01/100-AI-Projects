@@ -49,7 +49,7 @@ const sortedProjects = computed(() => {
     <!-- Controls -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <!-- Results Count -->
-        <div class="text-white">
+        <div class="">
             <span class="text-2xl font-bold">{{ projects.length }}</span>
             <span class="text-gray-300 ml-2">{{ t.projects.projectFound }}</span>
         </div>
@@ -59,7 +59,7 @@ const sortedProjects = computed(() => {
             <!-- Sort Dropdown -->
             <div class="relative">
                 <select v-model="sortBy"
-                    class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none pr-8">
+                    class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-4 py-2  text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none pr-8">
                     <option value="newest" class="bg-gray-800">{{ t.projects.filters.newestFirst }}</option>
                     <option value="oldest" class="bg-gray-800">{{ t.projects.filters.oldestFirst }}</option>
                     <option value="title" class="bg-gray-800">{{ t.projects.filters.titleAToZ }}</option>
@@ -77,8 +77,8 @@ const sortedProjects = computed(() => {
                 <button @click="viewMode = 'grid'" :class="[
                     'p-2 rounded-md transition-all',
                     viewMode === 'grid'
-                        ? 'bg-purple-500 text-white'
-                        : 'text-gray-400 hover:text-white'
+                        ? 'bg-blue-500 '
+                        : 'text-gray-400 hover:'
                 ]">
                     <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -89,8 +89,8 @@ const sortedProjects = computed(() => {
                 <button @click="viewMode = 'list'" :class="[
                     'p-2 rounded-md transition-all',
                     viewMode === 'list'
-                        ? 'bg-purple-500 text-white'
-                        : 'text-gray-400 hover:text-white'
+                        ? 'bg-blue-500 '
+                        : 'text-gray-400 hover:'
                 ]">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -110,7 +110,7 @@ const sortedProjects = computed(() => {
                 </path>
             </svg>
         </div>
-        <h3 class="text-xl font-semibold text-white mb-2">{{ t.projects.projectsNotFound }}</h3>
+        <h3 class="text-xl font-semibold  mb-2">{{ t.projects.projectsNotFound }}</h3>
         <p class="text-gray-400">{{ t.projects.fixYourSearch }}</p>
     </div>
 
@@ -125,7 +125,7 @@ const sortedProjects = computed(() => {
             'transition-all duration-300',
             viewMode === 'list' ? 'transform hover:scale-[1.02]' : ''
         ]">
-            <ProjectCard :project="project" :class="viewMode === 'list' ? 'flex-row' : ''" />
+            <ProjectCard :project="project" :t="t" :class="viewMode === 'list' ? 'flex-row' : ''" />
         </div>
     </div>
 
@@ -137,7 +137,7 @@ const sortedProjects = computed(() => {
 
         <!-- Scroll to Top Button -->
         <a href="#projects"
-            class="flex m-auto items-center gap-2 px-7! py-5! bg-white/10 backdrop-blur-sm border border-white/20 text-white w-fit rounded-lg hover:bg-white/20 transition-all duration-300 hover:-translate-y-1">
+            class="flex m-auto items-center gap-2 px-7! py-5! bg-white/10 backdrop-blur-sm border border-white/20  w-fit rounded-lg hover:bg-white/20 transition-all duration-300 hover:-translate-y-1">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18">
                 </path>

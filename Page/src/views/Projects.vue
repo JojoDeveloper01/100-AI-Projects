@@ -9,7 +9,7 @@ const selectedCategory = ref('All')
 const searchQuery = ref('')
 
 const filteredProjects = computed(() => {
-  let filtered = projects
+  let filtered = projects(t)
 
   if (selectedCategory.value !== 'All') {
     filtered = filtered.filter(project => project.category === selectedCategory.value)
@@ -25,28 +25,32 @@ const filteredProjects = computed(() => {
   return filtered
 })
 
-const completedProjects = computed(() => projects.filter(p => p.status === t.status.completed).length)
-const inProgressProjects = computed(() => projects.filter(p => p.status === t.status.inProgress).length)
+const completedProjects = computed(() => projects(t).filter(p => p.status === t.status.completed).length)
+const inProgressProjects = computed(() => projects(t).filter(p => p.status === t.status.inProgress).length)
 </script>
 
 <template>
   <BaseLayout>
     <!-- Hero Section -->
-    <section class="relative z-10 px-6 pt-10">
-      <div class="max-w-4xl m-auto text-center">
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+    <section class="relative">
+      <div class="m-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+          <span class="">
             {{ t.title }}
           </span>
         </h1>
-        <p class="text-xl md:text-2xl text-gray-300 font-bold mb-8 leading-relaxed">
-          {{ t.description }}
-        </p>
+
+        <div class="relative h-88">
+          <spline-viewer class="m-auto"
+            url="https://prod.spline.design/tuWb-1s-7gHqANF7/scene.splinecode"></spline-viewer>
+          <div class="absolute inset-x-0 bottom-0 h-full from-black/40 to-transparent pointer-events-none">
+          </div>
+        </div>
 
         <!-- Stats -->
-        <div class="flex flex-wrap justify-center gap-8 mb-12">
+        <div class="flex flex-wrap justify-center gap-8 pt-4 pb-8">
           <div class="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
-            <div class="text-3xl font-bold text-white">{{ projects.length }}</div>
+            <div class="text-3xl font-bold ">{{ projects(t).length }}</div>
             <div class="text-gray-300 text-sm">{{ t.hero.totalProjects }}</div>
           </div>
           <div class="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
@@ -58,7 +62,7 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === t.st
             <div class="text-gray-300 text-sm">{{ t.status.inProgress }}</div>
           </div>
           <div class="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
-            <div class="text-3xl font-bold text-purple-400">{{ categories.length - 1 }}</div>
+            <div class="text-3xl font-bold text-blue-400">{{ categories(t).length - 1 }}</div>
             <div class="text-gray-300 text-sm">{{ t.hero.categories }}</div>
           </div>
         </div>
@@ -66,13 +70,13 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === t.st
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="px-6">
+    <section id="projects">
       <!-- Search and Filter -->
-      <div class="max-w-4xl m-auto">
+      <div class="from-black/40 to-transparent m-auto">
         <div class="relative mb-8">
           <input v-model="searchQuery" type="text" :placeholder="t.hero.search"
-            class="w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
-          <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none"
+            class="w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
+          <svg class="absolute right-7 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none"
             stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -80,18 +84,19 @@ const inProgressProjects = computed(() => projects.filter(p => p.status === t.st
         </div>
 
         <!-- Category Filter -->
-        <div class="relative flex flex-wrap justify-center gap-2 z-10">
-          <button v-for="category in categories" :key="category" @click="selectedCategory = category" :class="[
+        <div class="relative flex flex-wrap justify-center gap-2">
+          <button v-for="category in categories(t)" :key="category" @click="selectedCategory = category" :class="[
             'px-4 py-2 rounded-lg text-sm font-medium transition-all',
             selectedCategory === category
-              ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white'
-              : 'bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white'
+              ? 'bg-blue-500'
+              : 'bg-blue-500/10 hover:bg-blue-500/20!'
           ]">
             {{ category }}
           </button>
         </div>
       </div>
-      <div class="max-w-7xl mt-8 mx-auto mb-12">
+
+      <div class="mt-8 mx-auto mb-12">
         <ProjectGrid :projects="filteredProjects" />
       </div>
     </section>
