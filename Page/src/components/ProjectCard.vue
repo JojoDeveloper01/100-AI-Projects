@@ -17,28 +17,13 @@ const props = defineProps({
 const getStatusColor = (status) => {
   switch (status) {
     case props.t.status.completed:
-      return 'bg-green-100 text-green-800 border-green-200'
+      return 'bg-white/50 text-black font-bold tracking-widest border-green-500/30'
     case props.t.status.inProgress:
-      return 'bg-yellow-100 text-yellow-800 border-yellow-200'
+      return 'bg-white/50 text-black font-bold tracking-widest border-yellow-500/30'
     case props.t.status.planning:
-      return 'bg-blue-100 text-blue-800 border-blue-200'
+      return 'bg-white/50 text-black font-bold tracking-widest border-blue-500/30'
     default:
-      return 'bg-gray-100 text-gray-800 border-gray-200'
-  }
-}
-
-const getDifficultyColor = (difficulty) => {
-  switch (difficulty) {
-    case props.t.difficulty.simple:
-      return 'bg-green-500'
-    case props.t.difficulty.intermediate:
-      return 'bg-yellow-500'
-    case props.t.difficulty.advanced:
-      return 'bg-orange-500'
-    case props.t.difficulty.expert:
-      return 'bg-red-500'
-    default:
-      return 'bg-gray-500'
+      return 'bg-white/50 text-black font-bold tracking-widest border-gray-500/30'
   }
 }
 </script>
@@ -47,27 +32,17 @@ const getDifficultyColor = (difficulty) => {
   <div class="group translation-card overflow-hidden hover:bg-white/10 hover:border-white/20 hover:shadow-2xl">
     <!-- Project Image -->
     <div class="relative overflow-hidden">
-      <router-link to="/tradux" class="w-full block">
+      <router-link to="/tradux" class="w-full block p-0!">
         <img :src="project.image" :alt="project.title"
           class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
       </router-link>
 
-      <div class="absolute top-4 left-4">
-        <span :class="['px-3 py-1 rounded-full text-xs font-medium border', getStatusColor(project.status)]">
+      <div class="absolute top-0 right-0">
+        <span
+          class="px-3 py-1 rounded-bl-lg text-xs border bg-white/50 text-black font-bold tracking-widest border-green-500/30">
           {{ project.status }}
         </span>
-      </div>
-
-      <div class="absolute top-4 right-4">
-        <div class="flex items-center space-x-1">
-          <div v-for="n in 4" :key="n" :class="[
-            'w-2 h-2 rounded-full',
-            n <= ([t.difficulty.simple, t.difficulty.intermediate, t.difficulty.advanced, t.difficulty.expert].indexOf(project.difficulty) + 1)
-              ? getDifficultyColor(project.difficulty)
-              : 'bg-gray-300'
-          ]"></div>
-        </div>
       </div>
     </div>
 
@@ -113,7 +88,7 @@ const getDifficultyColor = (difficulty) => {
             <span>{{ props.t.projects.cards.demo }}</span>
           </router-link>
 
-          <a :href="project.githubUrl"
+          <a :href="project.githubUrl" target="_blank"
             class="flex items-center space-x-1 text-gray-400 hover: text-sm font-medium transition-colors">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path
