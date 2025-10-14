@@ -17,7 +17,7 @@ const props = defineProps({
 const config = {
     // Globe settings
     globe: {
-        size: 620,
+        size: 550,
         radius: 1.5,
         cameraDistance: 2.4,
         autoRotationSpeed: 0.005,
@@ -312,7 +312,7 @@ onUnmounted(() => {
 
 <style scoped>
 :root {
-    --globe-size: 620px;
+    --globe-size: 550px;
 }
 
 canvas {
