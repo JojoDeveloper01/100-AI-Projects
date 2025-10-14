@@ -4,9 +4,13 @@ import Footer from '@/components/Footer.vue'
 </script>
 
 <template>
-    <Header />
-    <main class="my-8 px-4 bg-gradient-to-b from-transparent via-black to-transparent">
-        <slot />
-    </main>
-    <Footer />
+    <div class="max-w-7xl">
+        <div class="px-4 bg-gradient-to-b from-transparent via-black to-transparent">
+            <Header />
+            <main class="my-8 ">
+                <slot />
+            </main>
+            <Footer />
+        </div>
+    </div>
 </template>

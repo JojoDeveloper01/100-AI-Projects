@@ -107,12 +107,12 @@ watch([activeFramework, activePackageManager], highlightCode)
                 </div>
 
                 <!-- EarthGlobe between first and second elements -->
-                <div class="EarthGlobe-mobile hidden scale-75 sm:scale-100">
+                <div class="EarthGlobe-mobile hidden scale-75 max-[470px]:scale-60 sm:scale-100">
                     <EarthGlobe :rotation-speed="0.002" />
                 </div>
 
                 <div class="second grid gap-2">
-                    <div class="flex gap-3 items-center p-2 max-[1095px]:justify-center">
+                    <div class="flex flex-wrap gap-3 items-center p-2 max-[1095px]:justify-center">
                         <div class="cursor-pointer flex justify-center items-center flex-col gap-2 font-medium"
                             v-for="(framework, index) in frameworks" :key="framework.name || index"
                             @click="activeFramework = index">
@@ -210,7 +210,7 @@ watch([activeFramework, activePackageManager], highlightCode)
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-green-400">{{ t.tradux.keyFeatures.title }}</h2>
-                <div class="space-y-4 grid grid-cols-2">
+                <div class="space-y-4 flex flex-wrap sm:grid sm:grid-cols-2">
                     <div v-for="feature in t.tradux.keyFeatures.features" :key="feature.title"
                         class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
@@ -230,7 +230,7 @@ watch([activeFramework, activePackageManager], highlightCode)
 
                 <!-- Package Manager Selector -->
                 <div class="mb-6">
-                    <div class="flex gap-3 items-center p-2 mb-4">
+                    <div class="flex flex-wrap gap-3 items-center p-2 mb-4">
                         <div class="cursor-pointer flex justify-center items-center flex-col gap-2 font-medium"
                             v-for="(packageManager, index) in packageManagers" :key="index"
                             @click="activePackageManager = index">
@@ -542,7 +542,7 @@ npx tradux -r es,pt</code></pre>
                                     }}</strong>
                             </li>
                         </ul>
-                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
                             <code class="text-cyan-300">{{ codeSnippets.jsSetLanguage }}</code>
                             <CopyButton :text="codeSnippets.jsSetLanguage" button-id="jsSetLanguage"
                                 :show-text="false" />
@@ -563,7 +563,7 @@ npx tradux -r es,pt</code></pre>
                                     }}</strong>
                             </li>
                         </ul>
-                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
                             <code class="text-cyan-300">{{ codeSnippets.jsGetLanguage }}</code>
                             <CopyButton :text="codeSnippets.jsGetLanguage" button-id="jsGetLanguage"
                                 :show-text="false" />
@@ -584,7 +584,7 @@ npx tradux -r es,pt</code></pre>
                                     }}</strong>
                             </li>
                         </ul>
-                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
                             <code class="text-cyan-300">{{ codeSnippets.jsGetAvailableLanguages }}</code>
                             <CopyButton :text="codeSnippets.jsGetAvailableLanguages" button-id="jsGetAvailableLanguages"
                                 :show-text="false" />
@@ -597,7 +597,8 @@ npx tradux -r es,pt</code></pre>
                         <div class="space-y-4">
                             <div>
                                 <p class="text-gray-300 mb-2">Basic translation access:</p>
-                                <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                                <div
+                                    class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
                                     <code class="text-cyan-300">{{ codeSnippets.jsTranslateExample }}</code>
                                     <CopyButton :text="codeSnippets.jsTranslateExample" button-id="jsTranslateExample"
                                         :show-text="false" />
@@ -605,7 +606,8 @@ npx tradux -r es,pt</code></pre>
                             </div>
                             <div>
                                 <p class="text-gray-300 mb-2">Nested object translation:</p>
-                                <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                                <div
+                                    class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
                                     <code class="text-cyan-300">{{ codeSnippets.jsTranslateNestedExample }}</code>
                                     <CopyButton :text="codeSnippets.jsTranslateNestedExample"
                                         button-id="jsTranslateNestedExample" :show-text="false" />
@@ -618,7 +620,7 @@ npx tradux -r es,pt</code></pre>
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
                         <h4 class="text-xl font-semibold text-pink-300 mb-3">Config Access</h4>
                         <p class="text-gray-300 mb-4">Access current Tradux configuration:</p>
-                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
                             <code class="text-cyan-300">{{ codeSnippets.jsGetConfig }}</code>
                             <CopyButton :text="codeSnippets.jsGetConfig" button-id="jsGetConfig" :show-text="false" />
                         </div>

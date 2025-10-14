@@ -187,3 +187,6 @@ dist
 .env*
 !.env.example
 .wrangler/
+
+#other 
+to-do-list.md
