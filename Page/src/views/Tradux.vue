@@ -119,26 +119,25 @@ const copyToClipboard = (text) => {
                 </div>
 
                 <div class="second grid gap-2">
-                    <div class="flex gap-3 items-center p-2">
+                    <div class="flex gap-3 items-center p-2 max-[1095px]:justify-center">
                         <div class="cursor-pointer flex justify-center items-center flex-col gap-2 font-medium"
-                            v-for="(framework, index) in frameworks" :key="index" @click="activeFramework = index">
+                            v-for="(framework, index) in frameworks" :key="framework.name || index"
+                            @click="activeFramework = index">
                             <button :class="[
-                                `p-2.5 rounded-full! border-5`,
-                                'flex items-center gap-2 transition-colors duration-300',
-                                activeFramework === index
-                                    ? ''
-                                    : ' hover: hover:bg-white/10'
-                            ]" :style="{ borderColor: activeFramework === index ? framework.color : '#6b7280' }">
+                                'p-2.5 rounded-full border-4 flex items-center gap-2 transition-colors duration-300',
+                                activeFramework === index ? '' : 'hover:bg-white/10'
+                            ]" :style="{ borderColor: activeFramework === index ? framework.color : '#6b7280' }"
+                                :aria-label="`Select ${framework.name} framework`">
                                 <div class="flex flex-col items-center justify-center">
-                                    <span v-html="framework.icon" :style="{
-                                        color: activeFramework === index ? framework.color : '#6b7280'
-                                    }" class="*:size-12 *:fill-current transition-colors duration-300" />
+                                    <span v-html="framework.icon"
+                                        :style="{ color: activeFramework === index ? framework.color : '#6b7280' }"
+                                        class="*:size-12 *:fill-current transition-colors duration-300" />
                                 </div>
                             </button>
                             <span :class="[
                                 'text-sm font-bold transition-colors duration-300',
                                 activeFramework === index ? '' : 'text-gray-400'
-                            ]">
+                            ]" :style="{ color: activeFramework === index ? framework.color : '' }">
                                 {{ framework.name }}
                             </span>
                         </div>
@@ -688,7 +687,7 @@ npx tradux -r es,pt</code></pre>
 <style scoped>
 .hero {
     display: flex;
-    gap: 3rem;
+    gap: 1rem;
     margin-bottom: 5rem;
 
     h1 {

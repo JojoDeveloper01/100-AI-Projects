@@ -29,7 +29,7 @@ const changeLanguage = async (newLang) => {
                         <span class=" font-bold text-sm">AI</span>
                     </router-link>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-8">
                     <router-link to="/#projects" :class="[
                         'transition-colors',
                         route.name === 'Projects'
@@ -59,8 +59,7 @@ const changeLanguage = async (newLang) => {
                             </svg>
                             <span>{{ currentLanguage }}</span>
                         </summary>
-                        <div
-                            class="absolute right-0 mt-2 w-36 bg-[#2a2a2a] rounded shadow-lg hidden group-open:block z-[999]">
+                        <div class="absolute right-0 mt-2 w-36 bg-[#2a2a2a] rounded shadow-lg group-open:block z-[999]">
                             <ul>
                                 <li v-for="lang in availableLanguages" :key="lang.value" :name="lang.name"
                                     :value="lang.value">
@@ -72,16 +71,6 @@ const changeLanguage = async (newLang) => {
                             </ul>
                         </div>
                     </details>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button class="text-gray-300 hover:">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
                 </div>
             </div>
         </nav>
