@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineAsyncComponent } from 'vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
+import CopyButton from '@/components/CopyButton.vue'
 import { frameworks } from '@/data/frameworks.js'
 
 // Lazy load EarthGlobe component (contains Three.js)
@@ -37,7 +38,6 @@ onMounted(highlightCode)
 
 const activeFramework = ref(0)
 const activePackageManager = ref(0)
-const showCopiedFeedback = ref(false)
 
 // Package managers data
 const packageManagers = [
@@ -80,20 +80,17 @@ const codeSnippets = {
     cliTranslate: '# Single language\nnpx tradux -t es\n\n# Multiple languages\nnpx tradux -t es,pt,fr\n\n# Interactive mode\nnpx tradux -t',
     cliUpdate: '# Update all existing languages\nnpx tradux -u\n\n# Update specific languages\nnpx tradux -u es,pt',
     cliRemove: '# Interactive removal\nnpx tradux -r\n\n# Remove specific languages\nnpx tradux -r es,pt',
-    jsImport: 'import { t, setLanguage, currentLanguage, availableLanguages, config } from \'tradux\';'
+    jsImport: 'import { t, setLanguage, currentLanguage, availableLanguages, config } from \'tradux\';',
+    jsSetLanguage: 'setLanguage(\'es\')',
+    jsGetLanguage: 'console.log(currentLanguage)',
+    jsGetAvailableLanguages: 'console.log(availableLanguages)',
+    jsGetConfig: 'console.log(config)',
+    jsTranslateExample: 't.welcome.title',
+    jsTranslateNestedExample: 't.user.profile.settings.language'
 }
 
 // Re-highlight code when framework or package manager changes
 watch([activeFramework, activePackageManager], highlightCode)
-
-const copyToClipboard = (text) => {
-    navigator.clipboard.writeText(text).then(() => {
-        showCopiedFeedback.value = true
-        setTimeout(() => {
-            showCopiedFeedback.value = false
-        }, 1000)
-    })
-}
 </script>
 
 <template>
@@ -102,14 +99,10 @@ const copyToClipboard = (text) => {
             <div class="flex flex-col gap-10 lg:gap-8">
                 <div class="first">
                     <h1 class="mb-6 py-4 md:text-7xl font-bold ">
-                        <span class="text-blue-400 font-bold">Tradux</span> - Intelligent Translation Library
+                        {{ t.tradux.hero.title }}
                     </h1>
                     <p class="text-xl md:text-2xl text-gray-300 max-w-3xl">
-                        Developer-friendly translation
-                        library that automates the process of managing multilingual content in your projects. It
-                        seamlessly integrates with
-                        <span class="text-blue-400 font-semibold">Cloudflare Workers to provide AI-powered
-                            translations</span> using language models.
+                        {{ t.tradux.hero.description }}
                     </p>
                 </div>
 
@@ -124,7 +117,7 @@ const copyToClipboard = (text) => {
                             v-for="(framework, index) in frameworks" :key="framework.name || index"
                             @click="activeFramework = index">
                             <button :class="[
-                                'p-2.5 rounded-full border-4 flex items-center gap-2 transition-colors duration-300',
+                                'p-2.5 rounded-full! border-4 flex items-center gap-2 transition-colors duration-300',
                                 activeFramework === index ? '' : 'hover:bg-white/10'
                             ]" :style="{ borderColor: activeFramework === index ? framework.color : '#6b7280' }"
                                 :aria-label="`Select ${framework.name} framework`">
@@ -147,24 +140,8 @@ const copyToClipboard = (text) => {
                                 <code class="rounded-xl min-w-96 px-5 overflow-x-auto custom-scrollbar">{{ frameworks[activeFramework].usage }}</code>
                             </pre>
                         <div class="absolute right-3 top-3 flex justify-end">
-                            <button @click="copyToClipboard(frameworks[activeFramework].usage)" :class="[
-                                'text-sm flex items-center gap-1 transition-all duration-300 px-3 rounded-lg',
-                                showCopiedFeedback
-                                    ? 'bg-green-600 '
-                                    : 'text-gray-400 hover: hover:bg-white/10'
-                            ]">
-                                <svg v-if="!showCopiedFeedback" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7" />
-                                </svg>
-                                {{ showCopiedFeedback ? 'Copied!' : 'Copiar' }}
-                            </button>
+                            <CopyButton :text="frameworks[activeFramework].usage" button-id="framework"
+                                button-class="text-sm flex items-center gap-1 transition-all duration-300 px-3 rounded-lg text-gray-400 hover: hover:bg-white/10" />
                         </div>
                     </div>
                 </div>
@@ -176,9 +153,9 @@ const copyToClipboard = (text) => {
 
         <!-- Call to Action Section -->
         <section class="translation-card p-8 mb-16">
-            <h3 class="text-4xl font-bold  mb-4">Start Using Tradux Today</h3>
+            <h3 class="text-4xl font-bold  mb-4">{{ t.tradux.callToAction.title }}</h3>
             <p class="text-xl text-gray-300 mb-6">
-                Empower your apps with seamless multilingual support using Tradux.
+                {{ t.tradux.callToAction.description }}
             </p>
             <div class="">
                 <a href="https://github.com/JojoDeveloper01/Tradux" target="_blank"
@@ -187,7 +164,7 @@ const copyToClipboard = (text) => {
                         <path
                             d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                     </svg>
-                    Documentation
+                    {{ t.tradux.callToAction.button }}
                 </a>
             </div>
         </section>
@@ -195,31 +172,36 @@ const copyToClipboard = (text) => {
         <!-- Purpose Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-blue-400">🎯 Purpose</h2>
+                <h2 class="text-5xl font-bold mb-10 text-blue-400">{{ t.tradux.purpose.title }}</h2>
                 <p class="text-lg text-gray-300 mb-6">
-                    Tradux solves the common problem of managing translations in modern applications by:
+                    {{ t.tradux.purpose.description }}
                 </p>
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 class="text-xl font-semibold text-blue-300 mb-2">Automating translation workflows</h3>
-                        <p class="text-gray-300">No more manual translation files</p>
+                        <h3 class="text-xl font-semibold text-blue-300 mb-2">{{
+                            t.tradux.purpose.features.automating.title }}</h3>
+                        <p class="text-gray-300">{{ t.tradux.purpose.features.automating.description }}</p>
                     </div>
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 class="text-xl font-semibold text-blue-300 mb-2">Providing intelligent updates</h3>
-                        <p class="text-gray-300">Sync translations when your base language changes</p>
+                        <h3 class="text-xl font-semibold text-blue-300 mb-2">{{
+                            t.tradux.purpose.features.intelligent.title }}</h3>
+                        <p class="text-gray-300">{{ t.tradux.purpose.features.intelligent.description }}</p>
                     </div>
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 class="text-xl font-semibold text-blue-300 mb-2">Offering simple integration</h3>
-                        <p class="text-gray-300">Works with any JavaScript framework</p>
+                        <h3 class="text-xl font-semibold text-blue-300 mb-2">{{
+                            t.tradux.purpose.features.integration.title }}</h3>
+                        <p class="text-gray-300">{{ t.tradux.purpose.features.integration.description }}</p>
                     </div>
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 class="text-xl font-semibold text-blue-300 mb-2">Maintaining consistency</h3>
-                        <p class="text-gray-300">Ensures all languages stay in sync with your default language</p>
+                        <h3 class="text-xl font-semibold text-blue-300 mb-2">{{
+                            t.tradux.purpose.features.consistency.title }}</h3>
+                        <p class="text-gray-300">{{ t.tradux.purpose.features.consistency.description }}</p>
                     </div>
                 </div>
                 <div class="mt-4 p-4 rounded-lg bg-white/5 border border-white/10">
-                    <h3 class="text-xl font-semibold text-blue-300 mb-2">Auto-syncing config</h3>
-                    <p class="text-gray-300">Automatically updates availableLanguages when files are added/removed</p>
+                    <h3 class="text-xl font-semibold text-blue-300 mb-2">{{ t.tradux.purpose.features.autoSync.title }}
+                    </h3>
+                    <p class="text-gray-300">{{ t.tradux.purpose.features.autoSync.description }}</p>
                 </div>
             </div>
         </section>
@@ -227,65 +209,14 @@ const copyToClipboard = (text) => {
         <!-- Key Features Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-green-400">⚡ Key Features</h2>
+                <h2 class="text-5xl font-bold mb-10 text-green-400">{{ t.tradux.keyFeatures.title }}</h2>
                 <div class="space-y-4 grid grid-cols-2">
-                    <div class="flex items-start gap-3">
+                    <div v-for="feature in t.tradux.keyFeatures.features" :key="feature.title"
+                        class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
                         <div>
-                            <h3 class="text-xl font-semibold text-green-300">AI-Powered Translations via Cloudflare
-                                Workers API</h3>
-                            <p class="text-gray-300">Worker AI - m2m100-1.2b</p>
-
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Automatic Language Synchronization</h3>
-                            <p class="text-gray-300">Add/remove content across all languages</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Smart Update System</h3>
-                            <p class="text-gray-300">Only translates missing content, preserves existing translations
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Auto Config Management</h3>
-                            <p class="text-gray-300">Automatically syncs availableLanguages with actual files</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Framework Agnostic</h3>
-                            <p class="text-gray-300">Works with React, Vue, Vanilla JS, Node.js, and more</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Local Storage Integration</h3>
-                            <p class="text-gray-300">Remembers user language preferences</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Simple CLI Interface</h3>
-                            <p class="text-gray-300">Easy-to-use command line tools</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-green-300">Intelligent Path Resolution</h3>
-                            <p class="text-gray-300">Automatically finds i18n folders in public directories</p>
+                            <h3 class="text-xl font-semibold text-green-300">{{ feature.title }}</h3>
+                            <p class="text-gray-300">{{ feature.description }}</p>
                         </div>
                     </div>
                 </div>
@@ -295,7 +226,7 @@ const copyToClipboard = (text) => {
         <!-- Installation Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-purple-400">🚀 Installation</h2>
+                <h2 class="text-5xl font-bold mb-10 text-purple-400">{{ t.tradux.installation.title }}</h2>
 
                 <!-- Package Manager Selector -->
                 <div class="mb-6">
@@ -331,15 +262,8 @@ const copyToClipboard = (text) => {
                     <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                         <pre
                             class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">{{ packageManagers[activePackageManager].installCommand }}</code></pre>
-                        <button @click="copyToClipboard(packageManagers[activePackageManager].installCommand)"
-                            class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                            Copy
-                        </button>
+                        <CopyButton :text="packageManagers[activePackageManager].installCommand" button-id="package"
+                            button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                     </div>
 
                     <!-- Extra Step Notice for pnpm/bun -->
@@ -351,10 +275,11 @@ const copyToClipboard = (text) => {
                                 <span class="text-xs font-bold text-black">!</span>
                             </div>
                             <div>
-                                <h4 class="text-orange-300 font-semibold mb-1">Extra Step Required</h4>
+                                <h4 class="text-orange-300 font-semibold mb-1">{{
+                                    t.tradux.installation.extraStepNotice.title }}</h4>
                                 <p class="text-sm text-gray-300">
-                                    {{ packageManagers[activePackageManager].name }} requires running the init command
-                                    to properly set up Tradux in your project.
+                                    {{ packageManagers[activePackageManager].name }} {{
+                                        t.tradux.installation.extraStepNotice.description }}
                                 </p>
                             </div>
                         </div>
@@ -366,27 +291,22 @@ const copyToClipboard = (text) => {
         <!-- Setup Requirements Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-orange-400">📋 Setup Requirements</h2>
+                <h2 class="text-5xl font-bold mb-10 text-orange-400">{{ t.tradux.setupRequirements.title }}</h2>
                 <div class="space-y-4">
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 class="text-xl font-semibold text-orange-300 mb-2">Cloudflare Account</h3>
-                        <p class="text-gray-300">You need Cloudflare API credentials</p>
+                        <h3 class="text-xl font-semibold text-orange-300 mb-2">{{
+                            t.tradux.setupRequirements.cloudflare.title }}</h3>
+                        <p class="text-gray-300">{{ t.tradux.setupRequirements.cloudflare.description }}</p>
                     </div>
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h3 class="text-xl font-semibold text-orange-300 mb-4">Environment Variables</h3>
-                        <p class="text-gray-300 mb-3">Create a .env file with:</p>
+                        <h3 class="text-xl font-semibold text-orange-300 mb-4">{{
+                            t.tradux.setupRequirements.envVars.title }}</h3>
+                        <p class="text-gray-300 mb-3">{{ t.tradux.setupRequirements.envVars.description }}</p>
                         <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                             <pre class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">CLOUDFLARE_ACCOUNT_ID=your_account_id
 CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
-                            <button @click="copyToClipboard(codeSnippets.envVars)"
-                                class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                Copy
-                            </button>
+                            <CopyButton :text="codeSnippets.envVars" button-id="envVars"
+                                button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                         </div>
                     </div>
                 </div>
@@ -396,10 +316,9 @@ CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
         <!-- Configuration Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-cyan-400">⚙️ Configuration</h2>
+                <h2 class="text-5xl font-bold mb-10 text-cyan-400">{{ t.tradux.configuration.title }}</h2>
                 <p class="text-lg text-gray-300 mb-6">
-                    After installation, Tradux automatically creates a <code
-                        class="bg-gray-800 px-2 py-1 rounded">tradux.config.json</code> file:
+                    {{ t.tradux.configuration.description }}
                 </p>
 
                 <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10 mb-6">
@@ -408,36 +327,30 @@ CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
     "defaultLanguage": "en",
     "availableLanguages": ["en"]
 }</code></pre>
-                    <button @click="copyToClipboard(codeSnippets.configJson)"
-                        class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                        Copy
-                    </button>
+                    <CopyButton :text="codeSnippets.configJson" button-id="configJson"
+                        button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                 </div>
 
-                <h3 class="text-xl font-semibold text-cyan-300 mb-4">Configuration Options:</h3>
+                <h3 class="text-xl font-semibold text-cyan-300 mb-4">{{ t.tradux.configuration.options.title }}</h3>
                 <div class="space-y-3">
                     <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
                         <div>
-                            <code class="text-cyan-300">defaultLanguage</code> - Your base language (default: 'en')
+                            <code class="text-cyan-300">defaultLanguage</code> - {{
+                                t.tradux.configuration.options.defaultLanguage }}
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
                         <div>
-                            <code class="text-cyan-300">i18nPath</code> - Path to translation files (default: './i18n')
+                            <code class="text-cyan-300">i18nPath</code> - {{ t.tradux.configuration.options.i18nPath }}
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
                         <div>
-                            <code class="text-cyan-300">availableLanguages</code> - Auto-managed list of available
-                            language files
+                            <code class="text-cyan-300">availableLanguages</code> - {{
+                                t.tradux.configuration.options.availableLanguages }}
                         </div>
                     </div>
                 </div>
@@ -447,45 +360,34 @@ CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
         <!-- CLI Usage Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-yellow-400">🛠️ CLI Usage</h2>
+                <h2 class="text-5xl font-bold mb-10 text-yellow-400">{{ t.tradux.cliUsage.title }}</h2>
 
                 <div class="space-y-6">
                     <div>
-                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">View all available commands:</h3>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">{{
+                            t.tradux.cliUsage.commands.viewCommands.title }}</h3>
                         <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                             <pre
                                 class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">npx tradux</code></pre>
-                            <button @click="copyToClipboard(codeSnippets.cliBasic)"
-                                class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                Copy
-                            </button>
+                            <CopyButton :text="codeSnippets.cliBasic" button-id="cliBasic"
+                                button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">Initialize Tradux in your project:</h3>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">{{
+                            t.tradux.cliUsage.commands.initialize.title }}</h3>
                         <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                             <pre
                                 class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">npx tradux init</code></pre>
-                            <button @click="copyToClipboard(codeSnippets.cliInit)"
-                                class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                Copy
-                            </button>
+                            <CopyButton :text="codeSnippets.cliInit" button-id="cliInit"
+                                button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">Translate to specific languages:</h3>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">{{
+                            t.tradux.cliUsage.commands.translate.title }}</h3>
                         <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10 mb-3">
                             <pre class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar"># Single language
 npx tradux -t es
@@ -495,64 +397,43 @@ npx tradux -t es,pt,fr
 
 # Interactive mode
 npx tradux -t</code></pre>
-                            <button @click="copyToClipboard(codeSnippets.cliTranslate)"
-                                class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                Copy
-                            </button>
+                            <CopyButton :text="codeSnippets.cliTranslate" button-id="cliTranslate"
+                                button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">Update existing translations:</h3>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">{{
+                            t.tradux.cliUsage.commands.update.title }}</h3>
                         <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10 mb-3">
                             <pre class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar"># Update all existing languages
 npx tradux -u
 
 # Update specific languages
 npx tradux -u es,pt</code></pre>
-                            <button @click="copyToClipboard(codeSnippets.cliUpdate)"
-                                class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                Copy
-                            </button>
+                            <CopyButton :text="codeSnippets.cliUpdate" button-id="cliUpdate"
+                                button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                         </div>
                     </div>
 
                     <div>
-                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">Remove language files:</h3>
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-3">{{
+                            t.tradux.cliUsage.commands.remove.title }}</h3>
                         <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10 mb-3">
                             <pre class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar"># Interactive removal
 npx tradux -r
 
 # Remove specific languages
 npx tradux -r es,pt</code></pre>
-                            <button @click="copyToClipboard(codeSnippets.cliRemove)"
-                                class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                                Copy
-                            </button>
+                            <CopyButton :text="codeSnippets.cliRemove" button-id="cliRemove"
+                                button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                         </div>
                     </div>
 
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
                         <p class="text-gray-300">
-                            <strong class="text-yellow-300">Update vs Translate:</strong> Update (-u) syncs existing
-                            language files with your default language, adding missing content and removing obsolete
-                            keys. Translate (-t) creates new translation files. Remove (-r) deletes language files and
-                            automatically updates the config.
+                            <strong class="text-yellow-300">{{ t.tradux.cliUsage.commands.updateVsTranslate.title
+                                }}</strong> {{ t.tradux.cliUsage.commands.updateVsTranslate.description }}
                         </p>
                     </div>
                 </div>
@@ -562,121 +443,185 @@ npx tradux -r es,pt</code></pre>
         <!-- JavaScript API Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
-                <h2 class="text-5xl font-bold mb-10 text-pink-400">💻 JavaScript API</h2>
+                <h2 class="text-5xl font-bold mb-10 text-pink-400">{{ t.tradux.javascriptApi.title }}</h2>
 
                 <div class="mb-6">
-                    <p class="text-lg text-gray-300 mb-4">Import Tradux functions in your application:</p>
+                    <p class="text-lg text-gray-300 mb-4">{{ t.tradux.javascriptApi.importDescription }}</p>
                     <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                         <pre
                             class="language-javascript"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">import { t, setLanguage, currentLanguage, availableLanguages, config } from 'tradux';</code></pre>
-                        <button @click="copyToClipboard(codeSnippets.jsImport)"
-                            class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                            </svg>
-                            Copy
-                        </button>
+                        <CopyButton :text="codeSnippets.jsImport" button-id="jsImport"
+                            button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                     </div>
                 </div>
 
-                <h3 class="text-2xl font-semibold text-pink-300 mb-6">Core Functions</h3>
+                <h3 class="text-2xl font-semibold text-pink-300 mb-6">{{ t.tradux.javascriptApi.coreFunctions.title }}
+                </h3>
 
                 <div class="overflow-x-auto mb-6">
                     <table class="w-full border-collapse border border-white/20 rounded-lg overflow-hidden">
                         <thead>
                             <tr class="bg-white/10">
-                                <th class="border border-white/20 p-3 text-left text-pink-300">Function/Variable</th>
-                                <th class="border border-white/20 p-3 text-left text-pink-300">Purpose</th>
-                                <th class="border border-white/20 p-3 text-left text-pink-300">Use Case</th>
+                                <th class="border border-white/20 p-3 text-left text-pink-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.headers.function }}</th>
+                                <th class="border border-white/20 p-3 text-left text-pink-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.headers.purpose }}</th>
+                                <th class="border border-white/20 p-3 text-left text-pink-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.headers.useCase }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="border border-white/20 p-3"><code class="text-cyan-300">t</code></td>
-                                <td class="border border-white/20 p-3 text-gray-300">Access translations</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.t.purpose }}</td>
                                 <td class="border border-white/20 p-3"><code
-                                        class="text-yellow-300">t.navigation.home</code></td>
+                                        class="text-yellow-300">{{ t.tradux.javascriptApi.coreFunctions.table.functions.t.useCase }}</code>
+                                </td>
                             </tr>
                             <tr class="bg-white/5">
                                 <td class="border border-white/20 p-3"><code
                                         class="text-cyan-300">setLanguage(lang)</code></td>
-                                <td class="border border-white/20 p-3 text-gray-300">Switch active language</td>
-                                <td class="border border-white/20 p-3 text-gray-300">User language selection</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.setLanguage.purpose }}</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.setLanguage.useCase }}</td>
                             </tr>
                             <tr>
                                 <td class="border border-white/20 p-3"><code
                                         class="text-cyan-300">currentLanguage</code></td>
-                                <td class="border border-white/20 p-3 text-gray-300">Current language code</td>
-                                <td class="border border-white/20 p-3 text-gray-300">Display current language</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.currentLanguage.purpose }}</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.currentLanguage.useCase }}</td>
                             </tr>
                             <tr class="bg-white/5">
                                 <td class="border border-white/20 p-3"><code
                                         class="text-cyan-300">availableLanguages</code></td>
-                                <td class="border border-white/20 p-3 text-gray-300">Available language list</td>
-                                <td class="border border-white/20 p-3 text-gray-300">Language selector lists</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.availableLanguages.purpose }}
+                                </td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.availableLanguages.useCase }}
+                                </td>
                             </tr>
                             <tr>
                                 <td class="border border-white/20 p-3"><code class="text-cyan-300">config</code></td>
-                                <td class="border border-white/20 p-3 text-gray-300">Access configuration</td>
-                                <td class="border border-white/20 p-3 text-gray-300">View current settings</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.config.purpose }}</td>
+                                <td class="border border-white/20 p-3 text-gray-300">{{
+                                    t.tradux.javascriptApi.coreFunctions.table.functions.config.useCase }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <h3 class="text-2xl font-semibold text-pink-300 mb-6">Function Details</h3>
+                <h3 class="text-2xl font-semibold text-pink-300 mb-6">{{ t.tradux.javascriptApi.functionDetails.title }}
+                </h3>
 
                 <div class="space-y-6">
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h4 class="text-xl font-semibold text-pink-300 mb-3">setLanguage(lang)</h4>
-                        <ul class="space-y-2 text-gray-300">
+                        <h4 class="text-xl font-semibold text-pink-300 mb-3">{{
+                            t.tradux.javascriptApi.functionDetails.setLanguage.title }}</h4>
+                        <ul class="space-y-2 text-gray-300 mb-4">
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                Changes the active language system-wide
+                                {{ t.tradux.javascriptApi.functionDetails.setLanguage.features.systemWide }}
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                Updates the global t object
+                                {{ t.tradux.javascriptApi.functionDetails.setLanguage.features.updates }}
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                Saves preference to localStorage (browser)
+                                {{ t.tradux.javascriptApi.functionDetails.setLanguage.features.localStorage }}
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <strong>Use for:</strong> Language switchers, user preferences
+                                <strong>{{ t.tradux.javascriptApi.functionDetails.setLanguage.features.useFor
+                                    }}</strong>
                             </li>
                         </ul>
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                            <code class="text-cyan-300">{{ codeSnippets.jsSetLanguage }}</code>
+                            <CopyButton :text="codeSnippets.jsSetLanguage" button-id="jsSetLanguage"
+                                :show-text="false" />
+                        </div>
                     </div>
 
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h4 class="text-xl font-semibold text-pink-300 mb-3">currentLanguage</h4>
-                        <ul class="space-y-2 text-gray-300">
+                        <h4 class="text-xl font-semibold text-pink-300 mb-3">{{
+                            t.tradux.javascriptApi.functionDetails.currentLanguage.title }}</h4>
+                        <ul class="space-y-2 text-gray-300 mb-4">
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                Returns the currently active language code as a string
+                                {{ t.tradux.javascriptApi.functionDetails.currentLanguage.features.returns }}
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <strong>Use for:</strong> Displaying current language, conditional logic
+                                <strong>{{ t.tradux.javascriptApi.functionDetails.currentLanguage.features.useFor
+                                    }}</strong>
                             </li>
                         </ul>
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                            <code class="text-cyan-300">{{ codeSnippets.jsGetLanguage }}</code>
+                            <CopyButton :text="codeSnippets.jsGetLanguage" button-id="jsGetLanguage"
+                                :show-text="false" />
+                        </div>
                     </div>
 
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
-                        <h4 class="text-xl font-semibold text-pink-300 mb-3">availableLanguages</h4>
-                        <ul class="space-y-2 text-gray-300">
+                        <h4 class="text-xl font-semibold text-pink-300 mb-3">{{
+                            t.tradux.javascriptApi.functionDetails.availableLanguages.title }}</h4>
+                        <ul class="space-y-2 text-gray-300 mb-4">
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                Returns array of available language codes from config
+                                {{ t.tradux.javascriptApi.functionDetails.availableLanguages.features.returns }}
                             </li>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <strong>Use for:</strong> Building language selectors, validation
+                                <strong>{{ t.tradux.javascriptApi.functionDetails.availableLanguages.features.useFor
+                                    }}</strong>
                             </li>
                         </ul>
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                            <code class="text-cyan-300">{{ codeSnippets.jsGetAvailableLanguages }}</code>
+                            <CopyButton :text="codeSnippets.jsGetAvailableLanguages" button-id="jsGetAvailableLanguages"
+                                :show-text="false" />
+                        </div>
+                    </div>
+
+                    <!-- New Section: Translation Usage Examples -->
+                    <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                        <h4 class="text-xl font-semibold text-pink-300 mb-3">Translation Usage Examples</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-gray-300 mb-2">Basic translation access:</p>
+                                <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                                    <code class="text-cyan-300">{{ codeSnippets.jsTranslateExample }}</code>
+                                    <CopyButton :text="codeSnippets.jsTranslateExample" button-id="jsTranslateExample"
+                                        :show-text="false" />
+                                </div>
+                            </div>
+                            <div>
+                                <p class="text-gray-300 mb-2">Nested object translation:</p>
+                                <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                                    <code class="text-cyan-300">{{ codeSnippets.jsTranslateNestedExample }}</code>
+                                    <CopyButton :text="codeSnippets.jsTranslateNestedExample"
+                                        button-id="jsTranslateNestedExample" :show-text="false" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Config Access Example -->
+                    <div class="p-4 rounded-lg bg-white/5 border border-white/10">
+                        <h4 class="text-xl font-semibold text-pink-300 mb-3">Config Access</h4>
+                        <p class="text-gray-300 mb-4">Access current Tradux configuration:</p>
+                        <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative">
+                            <code class="text-cyan-300">{{ codeSnippets.jsGetConfig }}</code>
+                            <CopyButton :text="codeSnippets.jsGetConfig" button-id="jsGetConfig" :show-text="false" />
+                        </div>
                     </div>
                 </div>
             </div>

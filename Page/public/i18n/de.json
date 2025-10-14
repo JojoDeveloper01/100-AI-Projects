@@ -74,5 +74,208 @@
     },
     "sendMeAnEmail": "Senden Sie mir eine E-Mail",
     "connectWithMe": "verbinden mit mir"
+  },
+  "tradux": {
+    "hero": {
+      "title": "Tradux - Intelligente Übersetzungsbibliothek",
+      "description": "Entwicklerfreundliche Übersetzungsbibliothek, die den Prozess der Verwaltung mehrsprachiger Inhalte in Ihren Projekten automatisiert und nahtlos mit Cloudflare Workers integriert, um KI-gestützte Übersetzungen mithilfe von Sprachmodellen bereitzustellen."
+    },
+    "callToAction": {
+      "title": "Beginnen Sie heute mit der Verwendung von Tradux",
+      "description": "Ermächtigen Sie Ihre Apps mit nahtloser mehrsprachiger Unterstützung mit Tradux.",
+      "button": "Dokumentation"
+    },
+    "purpose": {
+      "title": "Zweck",
+      "description": "Tradux löst das gemeinsame Problem des Managements von Übersetzungen in modernen Anwendungen durch:",
+      "features": {
+        "automating": {
+          "title": "Automatisierung von Übersetzungsworkflows",
+          "description": "Keine manuellen Übersetzungsdateien mehr"
+        },
+        "intelligent": {
+          "title": "Intelligente Updates bereitstellen",
+          "description": "Synchronisieren von Übersetzungen, wenn sich Ihre Basissprache ändert"
+        },
+        "integration": {
+          "title": "Einfache Integration ermöglichen",
+          "description": "Funktioniert mit jedem JavaScript-Framework"
+        },
+        "consistency": {
+          "title": "Konsistenz bewahren",
+          "description": "Stellen Sie sicher, dass alle Sprachen mit Ihrer Standardsprache synchron bleiben"
+        },
+        "autoSync": {
+          "title": "Auto-Synchronisierung Config",
+          "description": "Automatische Aktualisierungen verfügbarSprachen, wenn Dateien hinzugefügt / entfernt werden"
+        }
+      }
+    },
+    "keyFeatures": {
+      "title": "Schlüsselfunktionen",
+      "features": {
+        "aiPowered": {
+          "title": "KI-fähige Übersetzungen über die Cloudflare Workers API",
+          "description": "Arbeiter AI - m2m100-1.2b Modell"
+        },
+        "autoSync": {
+          "title": "Automatische Sprachsynchronisierung",
+          "description": "Hinzufügen/Entfernen von Inhalten in allen Sprachen"
+        },
+        "smartUpdate": {
+          "title": "Intelligentes Updatesystem",
+          "description": "Übersetzt nur fehlende Inhalte, behält bestehende Übersetzungen"
+        },
+        "autoConfig": {
+          "title": "Das Auto Config Management",
+          "description": "Synchronisiert automatisch verfügbareSprachen mit tatsächlichen Dateien"
+        },
+        "frameworkAgnostic": {
+          "title": "Agnostik Framework",
+          "description": "Funktioniert mit React, Vue, Vanilla JS, Node.js und mehr"
+        },
+        "localStorage": {
+          "title": "Lokale Lagerintegration",
+          "description": "Erinnert sich an die Sprachpräferenzen des Benutzers"
+        },
+        "simpleCli": {
+          "title": "Einfaches CLI Interface",
+          "description": "Einfach zu bedienende Befehlszeilen-Tools"
+        },
+        "intelligentPath": {
+          "title": "Intelligente Lösungspfade",
+          "description": "Sucht automatisch i18n-Ordner in öffentlichen Verzeichnissen"
+        }
+      }
+    },
+    "installation": {
+      "title": "Installation",
+      "extraStepNotice": {
+        "title": "Zusätzliche Schritte erforderlich",
+        "description": "erfordert, dass der init-Befehl ausgeführt wird, um Tradux in Ihrem Projekt ordnungsgemäß einzurichten."
+      }
+    },
+    "setupRequirements": {
+      "title": "Setup Anforderungen",
+      "cloudflare": {
+        "title": "Cloudflare Konto",
+        "description": "Sie benötigen Cloudflare API-Auskünfte"
+      },
+      "envVars": {
+        "title": "Umweltvariablen",
+        "description": "Erstellen Sie eine .env-Datei mit:"
+      }
+    },
+    "configuration": {
+      "title": "Konfiguration",
+      "description": "Nach der Installation erstellt Tradux automatisch eine Tradux.config.json-Datei:",
+      "options": {
+        "title": "Optionen der Konfiguration:",
+        "defaultLanguage": "Ihre Basissprache (Default: 'en')",
+        "i18nPath": "Path zu Übersetzungsdateien (Standard: './i18n')",
+        "availableLanguages": "Automatische Verwaltung der verfügbaren Sprachdateien"
+      }
+    },
+    "cliUsage": {
+      "title": "CLI Verwendung",
+      "commands": {
+        "viewCommands": {
+          "title": "Alle verfügbaren Befehle anzeigen:",
+          "command": "npx tradux"
+        },
+        "initialize": {
+          "title": "Initialize Tradux in your project:",
+          "command": "npx tradux init"
+        },
+        "translate": {
+          "title": "Translate to specific languages:",
+          "commands": {
+            "single": "# Single language\nnpx tradux -t es",
+            "multiple": "# Multiple languages\nnpx tradux -t es,pt,fr",
+            "interactive": "# Interactive mode\nnpx tradux -t"
+          }
+        },
+        "update": {
+          "title": "Update existing translations:",
+          "commands": {
+            "all": "# Update all existing languages\nnpx tradux -u",
+            "specific": "# Update specific languages\nnpx tradux -u es,pt"
+          }
+        },
+        "remove": {
+          "title": "Remove language files:",
+          "commands": {
+            "interactive": "# Interactive removal\nnpx tradux -r",
+            "specific": "# Remove specific languages\nnpx tradux -r es,pt"
+          }
+        },
+        "updateVsTranslate": {
+          "title": "Update vs Translate:",
+          "description": "Update (-u) syncs existing language files with your default language, adding missing content and removing obsolete keys. Translate (-t) creates new translation files. Remove (-r) deletes language files and automatically updates the config."
+        }
+      }
+    },
+    "javascriptApi": {
+      "title": "JavaScript API",
+      "importDescription": "Import Tradux functions in your application:",
+      "coreFunctions": {
+        "title": "Core Functions",
+        "table": {
+          "headers": {
+            "function": "Function/Variable",
+            "purpose": "Purpose",
+            "useCase": "Use Case"
+          },
+          "functions": {
+            "t": {
+              "purpose": "Access translations",
+              "useCase": "t.navigation.home"
+            },
+            "setLanguage": {
+              "purpose": "Switch active language",
+              "useCase": "User language selection"
+            },
+            "currentLanguage": {
+              "purpose": "Current language code",
+              "useCase": "Display current language"
+            },
+            "availableLanguages": {
+              "purpose": "Available language list",
+              "useCase": "Language selector lists"
+            },
+            "config": {
+              "purpose": "Access configuration",
+              "useCase": "View current settings"
+            }
+          }
+        }
+      },
+      "functionDetails": {
+        "title": "Function Details",
+        "setLanguage": {
+          "title": "setLanguage(lang)",
+          "features": {
+            "systemWide": "Changes the active language system-wide",
+            "updates": "Updates the global t object",
+            "localStorage": "Saves preference to localStorage (browser)",
+            "useFor": "Use for: Language switchers, user preferences"
+          }
+        },
+        "currentLanguage": {
+          "title": "currentLanguage",
+          "features": {
+            "returns": "Returns the currently active language code as a string",
+            "useFor": "Use for: Displaying current language, conditional logic"
+          }
+        },
+        "availableLanguages": {
+          "title": "availableLanguages",
+          "features": {
+            "returns": "Returns array of available language codes from config",
+            "useFor": "Use for: Building language selectors, validation"
+          }
+        }
+      }
+    }
   }
 }
