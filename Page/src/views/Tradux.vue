@@ -96,7 +96,7 @@ watch([activeFramework, activePackageManager], highlightCode)
 <template>
     <BaseLayout>
         <section class="hero">
-            <div class="flex flex-col gap-10 lg:gap-8">
+            <div class="w-full flex flex-col gap-10 lg:gap-8">
                 <div class="first">
                     <h1 class="mb-6 py-4 md:text-7xl font-bold ">
                         {{ t.tradux.hero.title }}
@@ -107,7 +107,7 @@ watch([activeFramework, activePackageManager], highlightCode)
                 </div>
 
                 <!-- EarthGlobe between first and second elements -->
-                <div class="EarthGlobe-mobile hidden">
+                <div class="EarthGlobe-mobile hidden scale-75 sm:scale-100">
                     <EarthGlobe :rotation-speed="0.002" />
                 </div>
 
