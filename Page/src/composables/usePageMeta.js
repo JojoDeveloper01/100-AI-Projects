@@ -1,45 +1,41 @@
 import { ref } from 'vue'
-
-// Default meta data
-const defaultMeta = {
-    title: '100 AI Projects - AI Development Portfolio',
-    description: '100 small AI projects to learn, experiment, and explore practical and creative uses of artificial intelligence.',
-    image: '/favicon.svg',
-    url: 'https://100aiprojects.dev'
-}
+import { defaultMeta } from '@/config/routes.js'
 
 // Current meta state
 const currentMeta = ref({ ...defaultMeta })
 
 export function usePageMeta() {
-    // Update document title and meta tags
+    // Update document title and meta tags (client-side only)
     const updateMeta = (meta) => {
-        // Update title
-        document.title = meta.title || defaultMeta.title
+        // Only update DOM if we're on the client
+        if (typeof document !== 'undefined') {
+            // Update title
+            document.title = meta.title || defaultMeta.title
 
-        // Update or create meta description
-        updateMetaTag('description', meta.description || defaultMeta.description)
+            // Update or create meta description
+            updateMetaTag('description', meta.description || defaultMeta.description)
 
-        // Update keywords if provided
-        if (meta.keywords) {
-            updateMetaTag('keywords', meta.keywords)
+            // Update keywords if provided
+            if (meta.keywords) {
+                updateMetaTag('keywords', meta.keywords)
+            }
+
+            // Update Open Graph meta tags
+            updateMetaTag('og:title', meta.title || defaultMeta.title, 'property')
+            updateMetaTag('og:description', meta.description || defaultMeta.description, 'property')
+            updateMetaTag('og:image', meta.image || defaultMeta.image, 'property')
+            updateMetaTag('og:url', meta.url || defaultMeta.url, 'property')
+            updateMetaTag('og:type', 'website', 'property')
+
+            // Update Twitter Card meta tags
+            updateMetaTag('twitter:card', 'summary_large_image', 'name')
+            updateMetaTag('twitter:title', meta.title || defaultMeta.title, 'name')
+            updateMetaTag('twitter:description', meta.description || defaultMeta.description, 'name')
+            updateMetaTag('twitter:image', meta.image || defaultMeta.image, 'name')
+
+            // Update canonical URL
+            updateLinkTag('canonical', meta.url || defaultMeta.url)
         }
-
-        // Update Open Graph meta tags
-        updateMetaTag('og:title', meta.title || defaultMeta.title, 'property')
-        updateMetaTag('og:description', meta.description || defaultMeta.description, 'property')
-        updateMetaTag('og:image', meta.image || defaultMeta.image, 'property')
-        updateMetaTag('og:url', meta.url || defaultMeta.url, 'property')
-        updateMetaTag('og:type', 'website', 'property')
-
-        // Update Twitter Card meta tags
-        updateMetaTag('twitter:card', 'summary_large_image', 'name')
-        updateMetaTag('twitter:title', meta.title || defaultMeta.title, 'name')
-        updateMetaTag('twitter:description', meta.description || defaultMeta.description, 'name')
-        updateMetaTag('twitter:image', meta.image || defaultMeta.image, 'name')
-
-        // Update canonical URL
-        updateLinkTag('canonical', meta.url || defaultMeta.url)
 
         currentMeta.value = { ...defaultMeta, ...meta }
     }

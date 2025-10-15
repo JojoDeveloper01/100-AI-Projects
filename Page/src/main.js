@@ -1,22 +1,21 @@
-import './assets/main.css'
+import "./assets/main.css"
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import Tres from '@tresjs/core'
-import { usePageMeta } from './composables/usePageMeta.js'
+import { createApp } from "vue"
+import App from "./App.vue"
+import { createAppRouter } from "./router"
+import Tres from "@tresjs/core"
+import hljsVuePlugin from "@highlightjs/vue-plugin"
 
-import 'highlight.js/styles/tokyo-night-dark.css'
-import 'highlight.js/lib/common';
-import hljsVuePlugin from "@highlightjs/vue-plugin";
+import "highlight.js/styles/tokyo-night-dark.css"
+import "highlight.js/lib/common"
 
 const app = createApp(App)
+const router = createAppRouter()
+
 app.use(router)
 app.use(hljsVuePlugin)
 app.use(Tres)
 
-// Initialize default meta tags
-const { setPageMeta } = usePageMeta()
-setPageMeta({}) // This will apply the default meta from the composable
-
-app.mount('body')
+router.isReady().then(() => {
+    app.mount("body")
+})
