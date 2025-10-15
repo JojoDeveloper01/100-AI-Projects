@@ -35,7 +35,7 @@ const inProgressProjects = computed(() => projects(t).filter(p => p.status === t
     <section class="relative">
       <div class="m-auto text-center">
         <h1 class="text-5xl md:text-7xl font-bold leading-tight">
-          <span class="">
+          <span class="capitalize">
             {{ t.title }}
           </span>
         </h1>

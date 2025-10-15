@@ -1,5 +1,4 @@
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import CopyButton from '@/components/CopyButton.vue'
 import { frameworks } from '@/data/frameworks.js'
@@ -13,7 +12,7 @@ const EarthGlobe = defineAsyncComponent({
 })
 
 import 'highlight.js/styles/vs2015.css'
-import { onMounted, nextTick, watch } from 'vue'
+import { onMounted, nextTick, watch, ref, defineAsyncComponent } from 'vue'
 import { t } from "tradux"
 
 const highlightCode = async () => {
@@ -433,7 +432,7 @@ npx tradux -r es,pt</code></pre>
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
                         <p class="text-gray-300">
                             <strong class="text-yellow-300">{{ t.tradux.cliUsage.commands.updateVsTranslate.title
-                                }}</strong> {{ t.tradux.cliUsage.commands.updateVsTranslate.description }}
+                            }}</strong> {{ t.tradux.cliUsage.commands.updateVsTranslate.description }}
                         </p>
                     </div>
                 </div>
@@ -539,7 +538,7 @@ npx tradux -r es,pt</code></pre>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.setLanguage.features.useFor
-                                    }}</strong>
+                                }}</strong>
                             </li>
                         </ul>
                         <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
@@ -560,7 +559,7 @@ npx tradux -r es,pt</code></pre>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.currentLanguage.features.useFor
-                                    }}</strong>
+                                }}</strong>
                             </li>
                         </ul>
                         <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
@@ -581,7 +580,7 @@ npx tradux -r es,pt</code></pre>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.availableLanguages.features.useFor
-                                    }}</strong>
+                                }}</strong>
                             </li>
                         </ul>
                         <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
