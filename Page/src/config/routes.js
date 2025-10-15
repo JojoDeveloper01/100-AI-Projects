@@ -1,5 +1,5 @@
 
-export const defaultMetaImage = '/shots/100_AI_Projects_shot.png'
+const defaultMetaImage = '/shots/100_AI_Projects_shot.png'
 // Shared route configuration with meta data
 export const routesConfig = [
     {
@@ -25,7 +25,7 @@ export const routesConfig = [
         name: 'Tradux',
         meta: {
             title: 'Tradux - Intelligent Translation Management Library',
-            description: 'Discover Tradux, a powerful JavaScript library for intelligent translation management. Automate multilingual workflows with AI-powered translation updates and seamless internationalization.',
+            description: 'Developer-friendly translation library that automates the process of managing multilingual content in your projects. It seamlessly integrates with Cloudflare Workers to provide AI-powered translations using language models.',
             image: '/shots/tradux_shot.png'
         }
     }
@@ -36,11 +36,3 @@ export const routeMetaData = {}
 routesConfig.forEach(route => {
     routeMetaData[route.path] = route.meta
 })
-
-// Default meta data for usePageMeta
-export const defaultMeta = {
-    title: '100 AI Projects - AI Development Portfolio',
-    description: '100 small AI projects to learn, experiment, and explore practical and creative uses of artificial intelligence.',
-    image: defaultMetaImage,
-    url: 'https://100aiprojects.dev'
-}

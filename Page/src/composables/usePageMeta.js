@@ -1,85 +1,44 @@
-import { ref } from 'vue'
-import { defaultMeta } from '@/config/routes.js'
-
-// Current meta state
-const currentMeta = ref({ ...defaultMeta })
+import { useHead, useSeoMeta } from '@unhead/vue'
+import { useRoute } from 'vue-router'
+import { routeMetaData } from '@/config/routes.js'
 
 export function usePageMeta() {
-    // Update document title and meta tags (client-side only)
-    const updateMeta = (meta) => {
-        // Only update DOM if we're on the client
-        if (typeof document !== 'undefined') {
-            // Update title
-            document.title = meta.title || defaultMeta.title
+    const route = useRoute()
 
-            // Update or create meta description
-            updateMetaTag('description', meta.description || defaultMeta.description)
+    // Get meta data for current route
+    const meta = routeMetaData[route.path]
 
-            // Update keywords if provided
-            if (meta.keywords) {
-                updateMetaTag('keywords', meta.keywords)
+    // Set up SEO meta tags using Unhead
+    useSeoMeta({
+        title: meta.title,
+        description: meta.description,
+        ogTitle: meta.title,
+        ogDescription: meta.description,
+        ogImage: `https://100aiprojects.dev${meta.image}`,
+        ogUrl: `https://100aiprojects.dev${route.path}`,
+        ogType: 'website',
+        ogSiteName: '100 AI Projects',
+        twitterCard: 'summary_large_image',
+        twitterTitle: meta.title,
+        twitterDescription: meta.description,
+        twitterImage: `https://100aiprojects.dev${meta.image}`,
+        twitterImageAlt: meta.title,
+    })
+
+    // Set canonical link
+    useHead({
+        link: [
+            {
+                rel: 'canonical',
+                href: `https://100aiprojects.dev${route.path}`
             }
-
-            // Update Open Graph meta tags
-            updateMetaTag('og:title', meta.title || defaultMeta.title, 'property')
-            updateMetaTag('og:description', meta.description || defaultMeta.description, 'property')
-            updateMetaTag('og:image', meta.image || defaultMeta.image, 'property')
-            updateMetaTag('og:url', meta.url || defaultMeta.url, 'property')
-            updateMetaTag('og:type', 'website', 'property')
-
-            // Update Twitter Card meta tags
-            updateMetaTag('twitter:card', 'summary_large_image', 'name')
-            updateMetaTag('twitter:title', meta.title || defaultMeta.title, 'name')
-            updateMetaTag('twitter:description', meta.description || defaultMeta.description, 'name')
-            updateMetaTag('twitter:image', meta.image || defaultMeta.image, 'name')
-
-            // Update canonical URL
-            updateLinkTag('canonical', meta.url || defaultMeta.url)
-        }
-
-        currentMeta.value = { ...defaultMeta, ...meta }
-    }
-
-    // Helper function to update or create meta tags
-    const updateMetaTag = (name, content, attribute = 'name') => {
-        let element = document.querySelector(`meta[${attribute}="${name}"]`)
-
-        if (!element) {
-            element = document.createElement('meta')
-            element.setAttribute(attribute, name)
-            document.head.appendChild(element)
-        }
-
-        element.setAttribute('content', content)
-    }
-
-    // Helper function to update or create link tags
-    const updateLinkTag = (rel, href) => {
-        let element = document.querySelector(`link[rel="${rel}"]`)
-
-        if (!element) {
-            element = document.createElement('link')
-            element.setAttribute('rel', rel)
-            document.head.appendChild(element)
-        }
-
-        element.setAttribute('href', href)
-    }
-
-    // Set page meta
-    const setPageMeta = (meta) => {
-        updateMeta(meta)
-    }
-
-    // Reset to default meta
-    const resetMeta = () => {
-        updateMeta(defaultMeta)
-    }
+        ]
+    })
 
     return {
-        currentMeta,
-        setPageMeta,
-        resetMeta,
-        updateMeta
+        meta,
+        setCustomMeta: (customMeta) => {
+            useSeoMeta(customMeta)
+        }
     }
 }
