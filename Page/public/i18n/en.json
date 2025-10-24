@@ -1,5 +1,8 @@
 {
   "title": "100 AI Projects",
+  "title_meta": "100 AI Projects - AI Development Portfolio",
+  "description_meta": "Explore 100 AI projects showcasing machine learning, deep learning, and innovative solutions.",
+  "keywords_meta": "AI projects, artificial intelligence, machine learning, deep learning, NLP, computer vision, generative AI, data science, AI portfolio",
   "categories": {
     "all": "All",
     "nlp": "Natural Language Processing",
@@ -47,7 +50,7 @@
       "demo": "Demo",
       "code": "Code",
       "tradux": {
-        "description": "JS library that uses an AI model to make translating your app easy"
+        "description": "Automate multilingual content with a developer-friendly translation library powered by AI and Cloudflare Workers."
       }
     },
     "backToTop": "Back to Top"
@@ -58,6 +61,9 @@
   "contact": {
     "title": "Let's Work Together",
     "subtitle": "Ready to bring your AI vision to life? Let's discuss your project and create something amazing together.",
+    "title_meta": "100 AI Projects - Contact",
+    "description_meta": "Get in touch with the 100 AI Projects team. Connect with us for collaborations, questions, or discussions about artificial intelligence and machine learning projects.",
+    "keywords_meta": "contact, AI projects, artificial intelligence, machine learning, collaboration, inquiries",
     "form": {
       "title": "Get in Touch",
       "name": "Name",
@@ -76,6 +82,10 @@
     "connectWithMe": "Connect With Me"
   },
   "tradux": {
+    "title_meta": "Tradux - Intelligent Translation Management Library",
+    "description_meta": "Automate multilingual content with a developer-friendly translation library powered by AI and Cloudflare Workers.",
+    "keywords_meta": "Tradux, translation library, multilingual content, Cloudflare Workers, AI-powered translations, language models, i18n, localization, developer tools",
+    "extraInfoServerUtility": "Tradux works with Node.js for backend translations and can set the meta tags of your website according to the current language.",
     "hero": {
       "title": "Tradux - Intelligent Translation Library",
       "description": "Developer-friendly translation library that automates the process of managing multilingual content in your projects. It seamlessly integrates with Cloudflare Workers to provide AI-powered translations using language models."
@@ -84,6 +94,11 @@
       "title": "Start Using Tradux Today",
       "description": "Empower your apps with seamless multilingual support using Tradux.",
       "button": "Documentation"
+    },
+    "seoInternationalization": {
+      "title": "SEO & Internationalization: Dynamic Meta Tags",
+      "description": "Tradux makes it easy to dynamically update meta tags such as <html lang=\"...\"> and <title> based on the user's selected language.",
+      "details": "You can update meta tags dynamically in client-side apps (React, Vue, Svelte, Vanilla JS) using JavaScript, or on the server using SSR (Server-Side Rendering) with frameworks like Express, Vite SSR or AstroJS."
     },
     "purpose": {
       "title": "Purpose",
@@ -134,8 +149,8 @@
           "title": "Framework Agnostic",
           "description": "Works with React, Vue, Vanilla JS, Node.js, and more"
         },
-        "localStorage": {
-          "title": "Local Storage Integration",
+        "cookie": {
+          "title": "Cookie Integration",
           "description": "Remembers user language preferences"
         },
         "simpleCli": {

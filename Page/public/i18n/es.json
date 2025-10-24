@@ -73,7 +73,10 @@
       }
     },
     "sendMeAnEmail": "Envíame un email",
-    "connectWithMe": "Conecte conmigo"
+    "connectWithMe": "Conecte conmigo",
+    "title_meta": "100 Proyectos - Contacto",
+    "description_meta": "Póngase en contacto con el equipo de 100 Proyectos de IA. Póngase en contacto con nosotros para colaboraciones, preguntas o discusiones sobre proyectos de inteligencia artificial y aprendizaje automático.",
+    "keywords_meta": "contacto, proyectos de IA, inteligencia artificial, aprendizaje automático, colaboración, consultas"
   },
   "tradux": {
     "hero": {
@@ -134,10 +137,6 @@
           "title": "El marco agnóstico",
           "description": "Funciona con React, Vue, Vanilla JS, Node.js y más"
         },
-        "localStorage": {
-          "title": "Integración del almacenamiento local",
-          "description": "Recuerda las preferencias de idioma del usuario"
-        },
         "simpleCli": {
           "title": "Interfaz CLI sencilla",
           "description": "Herramientas de línea de comandos fáciles de usar"
@@ -145,6 +144,10 @@
         "intelligentPath": {
           "title": "Resolución de camino inteligente",
           "description": "Busca automáticamente las carpetas i18n en directorios públicos"
+        },
+        "cookie": {
+          "title": "La integración de cookies",
+          "description": "Recuerda las preferencias de idioma del usuario"
         }
       }
     },
@@ -276,6 +279,18 @@
           }
         }
       }
+    },
+    "title_meta": "Tradux - Biblioteca de Gestión Inteligente de Traducciones",
+    "description_meta": "Biblioteca de traducción amigable para desarrolladores que automatiza el proceso de gestión de contenidos multilingües en sus proyectos. Se integra sin problemas con Cloudflare Workers para proporcionar traducciones alimentadas por IA utilizando modelos de idiomas.",
+    "keywords_meta": "Tradux, biblioteca de traducciones, contenido multilingüe, Cloudflare Workers, traducciones alimentadas por IA, modelos de idiomas, i18n, localización, herramientas de desarrollador",
+    "extraInfoServerUtility": "Tradux trabaja con Node.js para traducciones de backend y puede establecer las etiquetas meta de su sitio web según el idioma actual.",
+    "seoInternationalization": {
+      "title": "SEO e internacionalización: Meta Tags dinámicos",
+      "description": "Tradux hace que sea fácil actualizar dinámicamente las etiquetas de meta como <html lang=\"...\"> y <title> en función del idioma seleccionado por el usuario.",
+      "details": "Puede actualizar metatags de forma dinámica en aplicaciones del lado del cliente (React, Vue, Svelte, Vanilla JS) utilizando JavaScript, o en el servidor utilizando SSR (Server-Side Rendering) con frameworks como Express, Vite SSR o AstroJS."
     }
-  }
+  },
+  "title_meta": "100 proyectos de IA - Portfolio de desarrollo de IA",
+  "description_meta": "Explore una colección completa de 100 proyectos de inteligencia artificial que muestran tecnologías avanzadas de IA, implementaciones de aprendizaje automático y soluciones innovadoras.",
+  "keywords_meta": "proyectos de IA, inteligencia artificial, aprendizaje automático, aprendizaje profundo, NLP, visión informática, IA generativa, ciencia de datos, cartera de IA"
 }

@@ -4,10 +4,6 @@ import BaseLayout from '@/layouts/BaseLayout.vue'
 import ProjectGrid from '@/components/ProjectGrid.vue'
 import { projects, categories } from '@/data/projects.js'
 import { t } from 'tradux'
-import { usePageMeta } from '@/composables/usePageMeta.js'
-
-// Initialize meta tags for this page
-usePageMeta()
 
 const selectedCategory = ref('All')
 const searchQuery = ref('')

@@ -2,17 +2,12 @@
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import CopyButton from '@/components/CopyButton.vue'
 import { frameworks } from '@/data/frameworks.js'
-import { usePageMeta } from '@/composables/usePageMeta.js'
 
-// Initialize meta tags for this page
-usePageMeta()
-
-// Lazy load EarthGlobe component (contains Three.js)
 const EarthGlobe = defineAsyncComponent({
     loader: () => import('@/components/EarthGlobe.vue'),
     loadingComponent: () => import('@/components/LoadingGlobe.vue'),
-    delay: 200, // Show loading after 200ms
-    timeout: 10000 // Timeout after 10 seconds
+    delay: 200,
+    timeout: 10000
 })
 
 import 'highlight.js/styles/vs2015.css'
@@ -20,7 +15,6 @@ import { onMounted, nextTick, watch, ref, defineAsyncComponent } from 'vue'
 import { t } from "tradux"
 
 const highlightCode = async () => {
-    // Dynamic import of highlight.js to reduce initial bundle
     const [{ default: hljs }, { default: javascript }] = await Promise.all([
         import('highlight.js/lib/core'),
         import('highlight.js/lib/languages/javascript')
@@ -28,21 +22,21 @@ const highlightCode = async () => {
 
     hljs.registerLanguage('javascript', javascript)
     await nextTick()
-    // Remove previous highlighting
+
     document.querySelectorAll('pre code').forEach(block => {
         block.removeAttribute('data-highlighted')
-        block.className = block.className.replace(/hljs[^ ]*/g, '').trim()
+        hljs.highlightElement(block)
     })
-    hljs.highlightAll()
 }
 
-onMounted(highlightCode)
-
+onMounted(async () => {
+    await nextTick()
+    highlightCode()
+})
 
 const activeFramework = ref(0)
 const activePackageManager = ref(0)
 
-// Package managers data
 const packageManagers = [
     {
         name: 'npm',
@@ -54,27 +48,26 @@ const packageManagers = [
     {
         name: 'yarn',
         color: '#2C8EBB',
-        icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm.768 4.105c.183 0 .363.053.525.157.125.083.287.185.755 1.154.31-.088.468-.042.551-.019.204.056.366.19.463.375.477.917.461 2.619.461 2.619s1.266.047 1.473.263c.207.216.293.468.293.468s.549 1.67.467 3.307c-.033.691-.088 1.308-.088 1.308s.462 1.355-.168 1.999c-.63.644-1.26.613-1.26.613s-.99.084-1.74-.265c-.75-.35-1.43-.964-1.43-.964s-.75.964-1.43.964-1.74.265-1.74.265-.63.031-1.26-.613c-.63-.644-.168-1.999-.168-1.999s-.055-.617-.088-1.308c-.082-1.637.467-3.307.467-3.307s.086-.252.293-.468c.207-.216 1.473-.263 1.473-.263s-.016-1.702.461-2.619c.097-.185.259-.319.463-.375.083-.023.241-.069.551.019.468-.969.63-1.071.755-1.154a.981.981 0 01.525-.157z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><g fill="currentColor" clip-path="url(#SVGXv8lpc2Y)"><path fill-rule="evenodd" d="M23.994 11.675C23.825 5.23 18.561.013 12.004 0C5.21-.005-.3 5.668.013 12.556c.28 6.216 5.344 11.296 11.71 11.441c6.81.157 12.449-5.4 12.271-12.322M7.92 7.525q-.218.422-.336.879c-.025.018-.02.05-.032.073c0 .05 0 .1-.014.147v.328c.017.05.012.1.017.15c.029.065-.019.146.054.198c.088.3.187.594.347.861c.05.084.042.129-.031.194a5.2 5.2 0 0 0-.987 1.183c-.472.802-.648 1.679-.648 2.6a.3.3 0 0 1-.016.104a.3.3 0 0 1-.062.105c-.609.667-.936 1.427-.786 2.348c.076.467.212.91.49 1.298a.4.4 0 0 1 .089.273c-.018.404.144.732.488.939c.58.351 1.207.477 1.875.328a1 1 0 0 0 .133-.052c.068-.032.137-.063.198-.053c.068.01.128.063.189.115q.052.046.107.084c.381.228.809.286 1.238.267c1.044-.044 2.085-.107 3.121-.252c.342-.047.67-.133.95-.343a.6.6 0 0 1 .198-.1c1.049-.346 2.052-.798 2.967-1.406c.555-.364 1.137-.662 1.794-.808c.359-.078.62-.315.78-.648c.408-.844-.217-1.79-1.19-1.799c-.658-.005-1.263.2-1.843.49a9 9 0 0 0-.615.352c-.19.115-.38.231-.579.333l-.029.017c-.04.024-.083.049-.136.046v-.1c.052-1.395-.401-2.607-1.328-3.646c-.056-.062-.046-.102-.005-.162a6.8 6.8 0 0 0 .831-1.6c.344-.973.413-1.972.308-2.987c-.05-.489-.15-.966-.356-1.417c-.18-.385-.515-.567-.93-.474c-.111.023-.149-.01-.194-.102a5 5 0 0 0-.468-.817a.89.89 0 0 0-.685-.36c-.444-.025-.75.216-1.008.539a3.3 3.3 0 0 0-.458.805c-.036.087-.08.136-.15.162a.4.4 0 0 1-.094.02a3.28 3.28 0 0 0-2.014.97a1.34 1.34 0 0 1-.543.349c-.293.097-.496.299-.637.57" clip-rule="evenodd"/><path d="M14.947 15.813c0 .242-.056.478-.086.713c-.026.207-.005.231.205.195c.472-.082.9-.28 1.311-.515c.441-.251.861-.537 1.332-.726a3 3 0 0 1 1.134-.243c.343 0 .582.186.624.48c.04.272-.11.533-.384.59c-.781.166-1.456.551-2.113.98c-.882.569-1.842.98-2.841 1.295c-.037.01-.085.019-.108.041c-.236.25-.548.292-.863.333c-.884.116-1.773.168-2.665.22a3 3 0 0 1-.77-.026c-.41-.08-.583-.233-.645-.57c-.056-.301.086-.587.388-.784l.116-.073a1.3 1.3 0 0 1-.398-.364c-.05-.069-.076-.026-.092.031l-.15.57q-.05.19-.129.37c-.152.348-.43.516-.797.55a2 2 0 0 1-1.065-.215c-.23-.113-.299-.283-.223-.533c.04-.134.116-.25.207-.391c-.317.063-.456-.121-.566-.344a2.37 2.37 0 0 1-.231-1.54c.081-.424.33-.77.63-1.069c.175-.175.228-.344.223-.59c-.04-1.425.498-2.595 1.605-3.499c.097-.081.195-.165.297-.239c.063-.044.07-.073.018-.138c-.286-.36-.509-.75-.61-1.204c-.117-.511.057-.955.314-1.38a.3.3 0 0 1 .158-.11c.323-.116.595-.291.842-.538c.555-.555 1.243-.81 2.03-.776c.1.005.144-.024.175-.118a4.4 4.4 0 0 1 .461-.98a1.3 1.3 0 0 1 .26-.31q.293-.242.49.076c.242.386.428.8.616 1.215c.048.105.084.142.194.07a2 2 0 0 1 .417-.189c.116-.04.184-.013.234.108c.147.354.226.724.27 1.104c.013.105.037.207.024.312c-.008.228.003.457.005.688c0 .102-.036.205-.005.309c-.023.624-.189 1.214-.43 1.786c-.225.535-.553 1.01-.881 1.485c-.129.183-.126.186.042.336c.818.737 1.27 1.663 1.42 2.743c.006.042.004.087.004.131c-.034.1.003.197.005.294c.009.148-.025.296 0 .44"/></g><defs><clipPath id="SVGXv8lpc2Y"><path fill="#fff" d="M0 0h24v24H0z"/></clipPath></defs></g></svg>`,
         installCommand: 'yarn add tradux',
         extraStep: false
     },
     {
         name: 'pnpm',
         color: '#F69220',
-        icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M0 0v7.5h7.5V0H0zm8.25 0v7.5h7.5V0h-7.5zm8.25 0v7.5H24V0h-7.5zM0 8.25v7.5h7.5v-7.5H0zm8.25 0v7.5h7.5v-7.5h-7.5zM0 16.5V24h7.5v-7.5H0zm8.25 0V24h7.5v-7.5h-7.5zm8.25 0V24H24v-7.5h-7.5z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><path fill="currentColor" d="M0 .004V40h39.996V.004Zm43.996 0V40h40V.004Zm44.008 0V40H128V.004Zm0 43.996v39.996H128V44Z"/><path fill="#6b7280" d="M43.996 44v39.996h40V44ZM0 87.996v40h39.996v-40Zm43.996 0v40h40v-40Zm44.008 0v40H128v-40Z"/></svg>`,
         installCommand: 'pnpm install tradux && pnpx tradux init',
         extraStep: true
     },
     {
         name: 'bun',
         color: '#FBF0DF',
-        icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0.75c-0.622 0-1.125 0.503-1.125 1.125v0.75c0 0.622 0.503 1.125 1.125 1.125s1.125-0.503 1.125-1.125v-0.75c0-0.622-0.503-1.125-1.125-1.125zM5.636 5.636c-0.44-0.44-1.153-0.44-1.591 0s-0.44 1.153 0 1.591l0.531 0.531c0.44 0.44 1.153 0.44 1.591 0s0.44-1.153 0-1.591l-0.531-0.531zM18.364 5.636c0.44-0.44 1.153-0.44 1.591 0s0.44 1.153 0 1.591l-0.531 0.531c-0.44 0.44-1.153 0.44-1.591 0s-0.44-1.153 0-1.591l0.531-0.531zM12 5.25c-3.728 0-6.75 3.022-6.75 6.75 0 3.311 2.397 6.095 5.625 6.658v3.592c0 0.622 0.503 1.125 1.125 1.125s1.125-0.503 1.125-1.125v-3.592c3.228-0.563 5.625-3.347 5.625-6.658 0-3.728-3.022-6.75-6.75-6.75z"/></svg>`,
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><path fill="currentColor" d="M64 10.222c-5.234 0-10.394 2.325-16.36 5.734a358 358 0 0 0-6.1 3.58c-3.879 2.303-8.218 4.922-13.276 7.523h-.002v.002C10.607 36.257 0 51.657 0 68.204c0 13.707 7.219 26.122 18.814 35.082S46.388 117.778 64 117.778s33.589-5.532 45.184-14.492S128 81.911 128 68.204c0-16.563-10.61-31.946-28.264-41.141v-.004c-6.246-3.24-10.989-6.067-15.203-8.58l-.002-.003c-1.81-1.108-3.506-2.124-5.207-3.058l-.008-.004C73.744 12.236 69.211 10.222 64 10.222m0 1.058c4.942 0 9.273 1.905 14.802 5.058l.002.002l.004.002c1.68.923 3.368 1.93 5.175 3.04l.003.001h.002c4.214 2.514 8.983 5.363 15.26 8.618c17.38 9.052 27.694 24.092 27.694 40.203c0 13.336-7.015 25.444-18.405 34.245C97.148 111.251 81.39 116.72 64 116.72s-33.15-5.468-44.54-14.27C8.07 93.65 1.059 81.54 1.059 68.204c0-16.095 10.31-31.15 27.69-40.203c5.097-2.621 9.46-5.256 13.333-7.556a357 357 0 0 1 6.084-3.57C54.082 13.495 59.08 11.28 64 11.28m0 3.025c-4.27 0-8.705 2.096-14.223 5.173c-1.921 1.084-3.906 2.277-6.002 3.517v.002h-.002C39.83 25.345 35.32 28 30.258 30.654v-.002C14.011 39.127 4.231 53.155 4.231 68.203c0 12.586 6.75 23.98 17.579 32.2S47.558 113.697 64 113.697s31.359-5.074 42.188-13.293c10.83-8.22 17.58-19.615 17.58-32.2c0-15.05-9.781-29.075-26.047-37.52l-.002-.001c-6.378-3.254-11.355-6.314-15.405-8.734h-.002c-1.844-1.092-3.537-2.104-5.08-3.004h-.005c-5.152-2.951-8.992-4.64-13.227-4.64m3.957 3.256q.112 0 .24.047c12.812 5.043 13.693 14.755 12.136 20.45a.54.54 0 0 1-.234.33a.57.57 0 0 1-.76-.123a.52.52 0 0 1-.106-.386a26.1 26.1 0 0 0-3.638-10.81a27.2 27.2 0 0 0-7.957-8.384v-.066c-.488-.343-.212-1.058.319-1.058m-4.474.4a.53.53 0 0 1 .397.137c9.68 9.793 6.449 18.866 2.742 23.436c-.406.474-1.132-.018-.93-.589a25.6 25.6 0 0 0 1.132-11.279a25.9 25.9 0 0 0-3.857-10.704v-.064c-.254-.429.11-.902.516-.934zm-3.843.41c.267-.041.55.094.618.46c3.25 12.91-4.45 19.309-10.155 21.447c-.61.228-.982-.556-.508-.963a26.9 26.9 0 0 0 7.07-9.173a26 26 0 0 0 2.459-11.18c0-.335.25-.551.516-.591m-4.795 2.28c.26.066.463.287.386.612c-2.928 13.057-12.727 15.784-18.82 15.424c-.643.017-.628-.851-.019-1.031a29 29 0 0 0 10.484-5.52a27.8 27.8 0 0 0 7.238-9.166a.64.64 0 0 1 .731-.318zM42.971 55.28a9.7 9.7 0 0 1 2.052.17a9.44 9.44 0 0 1 4.774 2.464a8.9 8.9 0 0 1 2.55 4.612a8.7 8.7 0 0 1-.54 5.196a9.07 9.07 0 0 1-3.441 4.033a9.6 9.6 0 0 1-5.186 1.508c-2.47-.004-4.837-.954-6.583-2.64c-1.745-1.686-2.725-3.971-2.725-6.353a8.76 8.76 0 0 1 1.572-4.998a9.26 9.26 0 0 1 4.188-3.312a9.6 9.6 0 0 1 3.339-.68m41.994 0a9.7 9.7 0 0 1 2.054.176a9.43 9.43 0 0 1 4.772 2.479a8.9 8.9 0 0 1 2.537 4.622a8.7 8.7 0 0 1-.557 5.2a9.1 9.1 0 0 1-3.465 4.023a9.6 9.6 0 0 1-5.2 1.483c-2.463-.012-4.822-.968-6.556-2.655c-1.735-1.685-2.708-3.962-2.703-6.338c0-1.782.55-3.523 1.576-5.002a9.26 9.26 0 0 1 4.197-3.312a9.6 9.6 0 0 1 3.345-.676m-44.47 2.808a3.6 3.6 0 0 0-1.512.252a3.5 3.5 0 0 0-1.574 1.244a3.3 3.3 0 0 0-.593 1.878c0 .893.368 1.75 1.02 2.384a3.57 3.57 0 0 0 2.468.994a3.6 3.6 0 0 0 1.95-.56a3.4 3.4 0 0 0 1.298-1.512a3.27 3.27 0 0 0 .206-1.955a3.34 3.34 0 0 0-.954-1.733a3.55 3.55 0 0 0-2.308-.992Zm41.926 0a3.6 3.6 0 0 0-1.512.252a3.5 3.5 0 0 0-1.576 1.244a3.3 3.3 0 0 0-.591 1.878c0 .888.363 1.74 1.008 2.372a3.57 3.57 0 0 0 2.444 1.006h.033a3.6 3.6 0 0 0 1.953-.56a3.4 3.4 0 0 0 1.297-1.512a3.27 3.27 0 0 0 .207-1.955a3.34 3.34 0 0 0-.955-1.733a3.55 3.55 0 0 0-2.308-.992M53.81 79.618l20.68.032a.36.36 0 0 1 .334.146a13.2 13.2 0 0 1-2.357 4.81l-.072-.06c-2.132-1.957-4.952-3.072-7.895-3.12a11 11 0 0 0-4.54 1.023a10.6 10.6 0 0 0-3.617 2.752a13.2 13.2 0 0 1-2.884-5.438c.016-.032.083-.144.35-.144zm10.775 3.44c2.51.072 4.9 1.047 6.702 2.732l.083.068q-.522.528-1.106 1a10.7 10.7 0 0 1-6.115 2.794a10.6 10.6 0 0 1-6.116-2.827q-.243-.196-.475-.405h.006a8.9 8.9 0 0 1 3.11-2.456a9.3 9.3 0 0 1 3.91-.905z"/></svg>`,
         installCommand: 'bun install tradux && bunx tradux init',
         extraStep: true
     }
 ]
 
-// Code snippets for copy functionality
 const codeSnippets = {
     envVars: 'CLOUDFLARE_ACCOUNT_ID=your_account_id\nCLOUDFLARE_API_TOKEN=your_api_token',
     configJson: '{\n    "i18nPath": "./i18n",\n    "defaultLanguage": "en",\n    "availableLanguages": ["en"]\n}',
@@ -83,7 +76,7 @@ const codeSnippets = {
     cliTranslate: '# Single language\nnpx tradux -t es\n\n# Multiple languages\nnpx tradux -t es,pt,fr\n\n# Interactive mode\nnpx tradux -t',
     cliUpdate: '# Update all existing languages\nnpx tradux -u\n\n# Update specific languages\nnpx tradux -u es,pt',
     cliRemove: '# Interactive removal\nnpx tradux -r\n\n# Remove specific languages\nnpx tradux -r es,pt',
-    jsImport: 'import { t, setLanguage, currentLanguage, availableLanguages, config } from \'tradux\';',
+    jsImport: 'import { t, setLanguage, getCurrentLanguage, getAvailableLanguages, config } from \'tradux\';',
     jsSetLanguage: 'setLanguage(\'es\')',
     jsGetLanguage: 'console.log(currentLanguage)',
     jsGetAvailableLanguages: 'console.log(availableLanguages)',
@@ -92,8 +85,10 @@ const codeSnippets = {
     jsTranslateNestedExample: 't.user.profile.settings.language'
 }
 
-// Re-highlight code when framework or package manager changes
-watch([activeFramework, activePackageManager], highlightCode)
+watch([activeFramework, activePackageManager], async () => {
+    await nextTick()
+    highlightCode()
+})
 </script>
 
 <template>
@@ -115,7 +110,7 @@ watch([activeFramework, activePackageManager], highlightCode)
                 </div>
 
                 <div class="second grid gap-2">
-                    <div class="flex flex-wrap gap-3 items-center p-2 max-[1095px]:justify-center">
+                    <div class="flex flex-wrap gap-3 items-center p-2 max-[1095px]:justify-center overflow-auto">
                         <div class="cursor-pointer flex justify-center items-center flex-col gap-2 font-medium"
                             v-for="(framework, index) in frameworks" :key="framework.name || index"
                             @click="activeFramework = index">
@@ -140,11 +135,25 @@ watch([activeFramework, activePackageManager], highlightCode)
                     </div>
                     <div class="relative overflow-hidden rounded-xl">
                         <pre class="language-javascript grid">
-                                <code class="rounded-xl min-w-96 px-5 overflow-x-auto custom-scrollbar">{{ frameworks[activeFramework].usage }}</code>
-                            </pre>
-                        <div class="absolute right-3 top-3 flex justify-end">
+                            <code class="rounded-xl min-w-96 px-5 overflow-x-auto custom-scrollbar">{{ frameworks[activeFramework].usage }}</code>
+                        </pre>
+
+                        <div v-if="frameworks[activeFramework].name === 'Astro' || frameworks[activeFramework].name === 'Node'"
+                            class="w-full absolute pl-4 pr-2 top-1 flex justify-between items-center">
+                            <span class="w-full relative group">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"
+                                    class="text-amber-400 hover:text-amber-400 transition-colors duration-300 cursor-pointer">
+                                    <circle cx="12" cy="12" r="10" fill="currentColor" opacity="1" />
+                                    <text x="12" y="16" text-anchor="middle" font-size="14" stroke="#000"
+                                        fill="#000">i</text>
+                                </svg>
+                                <div
+                                    class="absolute top-full mt-2 z-10 px-4 py-2 rounded-lg bg-gray-900 text-sm text-gray-200 border border-white/10 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 text-wrap">
+                                    {{ t.tradux.extraInfoServerUtility }}
+                                </div>
+                            </span>
                             <CopyButton :text="frameworks[activeFramework].usage" button-id="framework"
-                                button-class="text-sm flex items-center gap-1 transition-all duration-300 px-3 rounded-lg text-gray-400 hover: hover:bg-white/10" />
+                                button-class="text-sm flex items-center gap-1 p-2! rounded-lg text-gray-400 hover: hover:bg-white/10" />
                         </div>
                     </div>
                 </div>
@@ -154,7 +163,6 @@ watch([activeFramework, activePackageManager], highlightCode)
             </div>
         </section>
 
-        <!-- Call to Action Section -->
         <section class="translation-card p-8 mb-16">
             <h3 class="text-4xl font-bold  mb-4">{{ t.tradux.callToAction.title }}</h3>
             <p class="text-xl text-gray-300 mb-6">
@@ -172,7 +180,18 @@ watch([activeFramework, activePackageManager], highlightCode)
             </div>
         </section>
 
-        <!-- Purpose Section -->
+        <section class="mb-16">
+            <div class="translation-card p-8 mb-8">
+                <h2 class="text-5xl font-bold mb-10 text-purple-400">{{ t.tradux.seoInternationalization.title }}</h2>
+                <p class="text-lg text-gray-300 mb-6">
+                    {{ t.tradux.seoInternationalization.description }}
+                </p>
+                <p class="text-gray-300 mb-4">
+                    {{ t.tradux.seoInternationalization.details }}
+                </p>
+            </div>
+        </section>
+
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-blue-400">{{ t.tradux.purpose.title }}</h2>
@@ -209,29 +228,83 @@ watch([activeFramework, activePackageManager], highlightCode)
             </div>
         </section>
 
-        <!-- Key Features Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-green-400">{{ t.tradux.keyFeatures.title }}</h2>
                 <div class="space-y-4 flex flex-wrap sm:grid sm:grid-cols-2">
-                    <div v-for="feature in t.tradux.keyFeatures.features" :key="feature.title"
-                        class="flex items-start gap-3">
+                    <div class="flex items-start gap-3">
                         <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
                         <div>
-                            <h3 class="text-xl font-semibold text-green-300">{{ feature.title }}</h3>
-                            <p class="text-gray-300">{{ feature.description }}</p>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.aiPowered.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.aiPowered.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.autoSync.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.autoSync.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.smartUpdate.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.smartUpdate.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.autoConfig.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.autoConfig.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.frameworkAgnostic.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.frameworkAgnostic.description }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.cookie.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.cookie.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.simpleCli.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.simpleCli.description }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-300">{{
+                                t.tradux.keyFeatures.features.intelligentPath.title }}</h3>
+                            <p class="text-gray-300">{{ t.tradux.keyFeatures.features.intelligentPath.description }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Installation Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-purple-400">{{ t.tradux.installation.title }}</h2>
 
-                <!-- Package Manager Selector -->
                 <div class="mb-6">
                     <div class="flex flex-wrap gap-3 items-center p-2 mb-4">
                         <div class="cursor-pointer flex justify-center items-center flex-col gap-2 font-medium"
@@ -261,7 +334,6 @@ watch([activeFramework, activePackageManager], highlightCode)
                         </div>
                     </div>
 
-                    <!-- Installation Command Display -->
                     <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                         <pre
                             class="language-bash"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">{{ packageManagers[activePackageManager].installCommand }}</code></pre>
@@ -269,7 +341,6 @@ watch([activeFramework, activePackageManager], highlightCode)
                             button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                     </div>
 
-                    <!-- Extra Step Notice for pnpm/bun -->
                     <div v-if="packageManagers[activePackageManager].extraStep"
                         class="mt-4 p-4 rounded-lg bg-orange-500/10 border border-orange-400/20">
                         <div class="flex items-start gap-3">
@@ -291,7 +362,6 @@ watch([activeFramework, activePackageManager], highlightCode)
             </div>
         </section>
 
-        <!-- Setup Requirements Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-orange-400">{{ t.tradux.setupRequirements.title }}</h2>
@@ -316,7 +386,6 @@ CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
             </div>
         </section>
 
-        <!-- Configuration Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-cyan-400">{{ t.tradux.configuration.title }}</h2>
@@ -360,7 +429,6 @@ CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
             </div>
         </section>
 
-        <!-- CLI Usage Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-yellow-400">{{ t.tradux.cliUsage.title }}</h2>
@@ -443,7 +511,6 @@ npx tradux -r es,pt</code></pre>
             </div>
         </section>
 
-        <!-- JavaScript API Section -->
         <section class="mb-16">
             <div class="translation-card p-8 mb-8">
                 <h2 class="text-5xl font-bold mb-10 text-pink-400">{{ t.tradux.javascriptApi.title }}</h2>
@@ -452,7 +519,7 @@ npx tradux -r es,pt</code></pre>
                     <p class="text-lg text-gray-300 mb-4">{{ t.tradux.javascriptApi.importDescription }}</p>
                     <div class="relative overflow-hidden rounded-xl bg-gray-900 border border-white/10">
                         <pre
-                            class="language-javascript"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">import { t, setLanguage, currentLanguage, availableLanguages, config } from 'tradux';</code></pre>
+                            class="language-javascript"><code class="rounded-xl px-5 py-4 overflow-x-auto custom-scrollbar">import { t, setLanguage, getCurrentLanguage, getAvailableLanguages, config } from 'tradux';</code></pre>
                         <CopyButton :text="codeSnippets.jsImport" button-id="jsImport"
                             button-class="absolute right-3 top-3 text-sm flex items-center gap-1 transition-all duration-300 px-3 py-1 rounded-lg text-gray-400 hover:bg-white/10" />
                     </div>
@@ -584,7 +651,7 @@ npx tradux -r es,pt</code></pre>
                             <li class="flex items-start gap-2">
                                 <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.availableLanguages.features.useFor
-                                    }}</strong>
+                                }}</strong>
                             </li>
                         </ul>
                         <div class="bg-gray-900/60 rounded-md p-4 border border-white/10 relative overflow-x-auto">
@@ -594,7 +661,6 @@ npx tradux -r es,pt</code></pre>
                         </div>
                     </div>
 
-                    <!-- New Section: Translation Usage Examples -->
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
                         <h4 class="text-xl font-semibold text-pink-300 mb-3">Translation Usage Examples</h4>
                         <div class="space-y-4">
@@ -619,7 +685,6 @@ npx tradux -r es,pt</code></pre>
                         </div>
                     </div>
 
-                    <!-- Config Access Example -->
                     <div class="p-4 rounded-lg bg-white/5 border border-white/10">
                         <h4 class="text-xl font-semibold text-pink-300 mb-3">Config Access</h4>
                         <p class="text-gray-300 mb-4">Access current Tradux configuration:</p>
@@ -649,7 +714,6 @@ npx tradux -r es,pt</code></pre>
     }
 }
 
-/* Responsive layout for viewport max 1095px */
 @media (max-width: 1095px) {
     .hero {
         flex-direction: column;
@@ -657,12 +721,10 @@ npx tradux -r es,pt</code></pre>
         align-items: center;
     }
 
-    /* Hide desktop EarthGlobe */
     .hero>.EarthGlobe {
         display: none;
     }
 
-    /* Show mobile EarthGlobe between first and second */
     .EarthGlobe-mobile {
         display: flex !important;
         justify-content: center;
@@ -670,14 +732,12 @@ npx tradux -r es,pt</code></pre>
     }
 }
 
-/* Desktop: Hide mobile EarthGlobe */
 @media (min-width: 1096px) {
     .EarthGlobe-mobile {
         display: none !important;
     }
 }
 
-/* Custom scrollbar styling */
 .custom-scrollbar {
     scrollbar-width: thin;
     scrollbar-color: #8b5cf6 #374151;

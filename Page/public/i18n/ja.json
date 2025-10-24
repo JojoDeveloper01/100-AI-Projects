@@ -73,7 +73,10 @@
       }
     },
     "sendMeAnEmail": "メールを送信",
-    "connectWithMe": "CONNECT ME"
+    "connectWithMe": "CONNECT ME",
+    "title_meta": "100 プロジェクト - コンタクト",
+    "description_meta": "100 AI Projectsのチームと連絡を取って、人工知能や機械学習プロジェクトに関するコラボレーション、質問、または議論をお願いします。",
+    "keywords_meta": "接触、AIプロジェクト、人工知能、機械学習、コラボレーション、アンケート"
   },
   "tradux": {
     "hero": {
@@ -134,10 +137,6 @@
           "title": "Agnostic Framework",
           "description": "React、Vue、Vanilla JS、Node.js などで動作します。"
         },
-        "localStorage": {
-          "title": "ローカルストレージ統合",
-          "description": "ユーザーの言語偏好を覚えています。"
-        },
         "simpleCli": {
           "title": "シンプルなインターフェイス",
           "description": "使いやすいコマンドラインツール"
@@ -145,6 +144,10 @@
         "intelligentPath": {
           "title": "インテリジェント・パス・ソリューション",
           "description": "公開ディレクトリの i18n フォルダを自動的に検索"
+        },
+        "cookie": {
+          "title": "Cookie 統合",
+          "description": "ユーザーの言語偏好を覚えています。"
         }
       }
     },
@@ -276,6 +279,18 @@
           }
         }
       }
+    },
+    "title_meta": "Tradux - インテリジェント翻訳管理図書館",
+    "description_meta": "プロジェクトにおける多言語コンテンツの管理プロセスを自動化する開発者フレンドリーな翻訳ライブラリで、言語モデルを使用してAI駆動の翻訳を提供するためにCloudflare Workersとシームレスに統合します。",
+    "keywords_meta": "Tradux、翻訳ライブラリ、多言語コンテンツ、Cloudflare Workers、AI駆動翻訳、言語モデル、i18n、ローカライゼーション、開発ツール",
+    "extraInfoServerUtility": "Tradux は、バックエンド翻訳のために Node.js で動作し、現在の言語に応じてウェブサイトのメタタグを設定できます。",
+    "seoInternationalization": {
+      "title": "SEO & 国際化:ダイナミックメタタグ",
+      "description": "Tradux は、ユーザーが選択した言語に基づいて <html lang=\"...\"> および <title> などのメタタグを動的に更新することを容易にします。",
+      "details": "JavaScript を使用してクライアント側のアプリケーション (React、Vue、Svelte、Vanilla JS) でメタタグをダイナミックに更新するか、Express、Vite SSR、AstroJS などのフレームワークを使用してサーバーで SSR (Server-Side Rendering) を使用することもできます。"
     }
-  }
+  },
+  "title_meta": "100 AI プロジェクト - AI 開発ポートフォリオ",
+  "description_meta": "最先端のAIテクノロジー、機械学習実装、革新的なソリューションを展示する100の人工知能プロジェクトの包括的なコレクションを探索してください。",
+  "keywords_meta": "AIプロジェクト、人工知能、機械学習、深層学習、NLP、コンピュータビジョン、生成型AI、データサイエンス、AIポートフォリオ"
 }

@@ -2,10 +2,6 @@
 import { ref } from 'vue'
 import BaseLayout from '@/layouts/BaseLayout.vue'
 import { t } from 'tradux'
-import { usePageMeta } from '@/composables/usePageMeta.js'
-
-// Initialize meta tags for this page
-usePageMeta()
 
 const form = ref({
     name: '',

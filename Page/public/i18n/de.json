@@ -73,7 +73,10 @@
       }
     },
     "sendMeAnEmail": "Senden Sie mir eine E-Mail",
-    "connectWithMe": "verbinden mit mir"
+    "connectWithMe": "verbinden mit mir",
+    "title_meta": "100 Projekte - Kontakt",
+    "description_meta": "Kontaktieren Sie das Team von 100 AI Projects.Kontaktieren Sie uns für Kooperationen, Fragen oder Diskussionen zu künstlichen Intelligenz- und maschinellen Lernprojekten.",
+    "keywords_meta": "Kontakt, KI-Projekte, künstliche Intelligenz, maschinelles Lernen, Zusammenarbeit, Anfragen"
   },
   "tradux": {
     "hero": {
@@ -134,10 +137,6 @@
           "title": "Agnostik Framework",
           "description": "Funktioniert mit React, Vue, Vanilla JS, Node.js und mehr"
         },
-        "localStorage": {
-          "title": "Lokale Lagerintegration",
-          "description": "Erinnert sich an die Sprachpräferenzen des Benutzers"
-        },
         "simpleCli": {
           "title": "Einfaches CLI Interface",
           "description": "Einfach zu bedienende Befehlszeilen-Tools"
@@ -145,6 +144,10 @@
         "intelligentPath": {
           "title": "Intelligente Lösungspfade",
           "description": "Sucht automatisch i18n-Ordner in öffentlichen Verzeichnissen"
+        },
+        "cookie": {
+          "title": "Cookie Integration",
+          "description": "Erinnert sich an die Sprachpräferenzen des Benutzers"
         }
       }
     },
@@ -276,6 +279,18 @@
           }
         }
       }
+    },
+    "title_meta": "Tradux - Intelligente Übersetzungsmanagementbibliothek",
+    "description_meta": "Entwicklerfreundliche Übersetzungsbibliothek, die den Prozess der Verwaltung mehrsprachiger Inhalte in Ihren Projekten automatisiert und nahtlos mit Cloudflare Workers integriert, um KI-gestützte Übersetzungen mithilfe von Sprachmodellen bereitzustellen.",
+    "keywords_meta": "Tradux, Übersetzungsbibliothek, mehrsprachige Inhalte, Cloudflare Workers, KI-gestützte Übersetzungen, Sprachmodelle, i18n, Lokalisierung, Entwickler-Tools",
+    "extraInfoServerUtility": "Tradux arbeitet mit Node.js für Backend-Übersetzungen und kann die Meta-Tags Ihrer Website entsprechend der aktuellen Sprache einstellen.",
+    "seoInternationalization": {
+      "title": "SEO & Internationalisierung: Dynamische Meta Tags",
+      "description": "Tradux erleichtert die dynamische Aktualisierung von Meta-Tags wie <html lang=\"...\"> und <title> basierend auf der ausgewählten Sprache des Benutzers.",
+      "details": "Sie können Meta-Tags dynamisch in Client-Side-Apps (React, Vue, Svelte, Vanilla JS) mithilfe von JavaScript oder auf dem Server mithilfe von SSR (Server-Side Rendering) mit Frameworks wie Express, Vite SSR oder AstroJS aktualisieren."
     }
-  }
+  },
+  "title_meta": "100 KI-Projekte - AI-Entwicklungs-Portfolio",
+  "description_meta": "Entdecken Sie eine umfassende Sammlung von 100 künstlichen Intelligenzprojekten, die hochmoderne KI-Technologien, maschinelle Lernimplementierungen und innovative Lösungen vorstellen.",
+  "keywords_meta": "KI-Projekte, künstliche Intelligenz, maschinelles Lernen, Deep Learning, NLP, Computer Vision, generative KI, Datenwissenschaft, AI-Portfolio"
 }

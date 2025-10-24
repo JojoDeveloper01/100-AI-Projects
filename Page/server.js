@@ -1,80 +1,66 @@
-import fs from 'node:fs/promises'
-import express from 'express'
-import { routeMetaData } from './src/config/routes.js'
+import express from "express";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+import { createServer as createViteServer } from "vite";
+import { t, getCurrentLanguage } from "tradux";
 
-// Constants
-const isProduction = process.env.NODE_ENV === 'production'
-const port = process.env.PORT || 5173
-const base = process.env.BASE || '/'
+const port = process.env.PORT || 5173;
 
-// Create http server
-const app = express()
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Add Vite middleware for development
-if (!isProduction) {
-    const { createServer } = await import('vite')
-    const vite = await createServer({
+async function createServer() {
+    const app = express();
+
+    const vite = await createViteServer({
         server: { middlewareMode: true },
-        appType: 'custom',
-        base
-    })
-    app.use(vite.middlewares)
-} else {
-    const compression = (await import('compression')).default
-    const sirv = (await import('sirv')).default
-    app.use(compression())
-    app.use(base, sirv('./dist', { extensions: [] }))
+        appType: "custom"
+    });
+    app.use(vite.middlewares);
+
+    app.use(/.*/, async (req, res, next) => {
+        try {
+            const url = req.originalUrl;
+            const page = url.split("/").filter(Boolean)[0] || "";
+
+            let template = await fs.readFile(path.resolve(__dirname, "index.html"), "utf-8");
+            template = await vite.transformIndexHtml(url, template);
+
+            const traduxLang =
+                req.headers.cookie?.split("; ").find(c => c.startsWith("tradux_lang="))?.split("=")[1] || "en";
+            const lang = await getCurrentLanguage(traduxLang);
+
+            const title = page ? t[page].title_meta : t.title_meta;
+            const description = page ? t[page].description_meta : t.description_meta;
+            const keywords = page ? t[page].keywords_meta : t.keywords_meta;
+            const image = page && page !== "contact"
+                ? `https://100aiprojects.dev/shots/${page}_shot.png`
+                : "https://100aiprojects.dev/shots/100_AI_Projects_shot.png";
+
+            const html = template
+                .replace(/<html lang=".*?">/, `<html lang="${lang}">`)
+                .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+                .replace(/<meta name="description" content=".*?">/, `<meta name="description" content="${description}">`)
+                .replace(/<meta name="keywords" content=".*?">/, `<meta name="keywords" content="${keywords}">`)
+                .replace(/<meta property="og:site_name" content=".*?">/, `<meta property="og:site_name" content="${title}">`)
+                .replace(/<meta property="og:title" content=".*?">/, `<meta property="og:title" content="${title}">`)
+                .replace(/<meta property="og:url" content=".*?">/, `<meta property="og:url" content="https://100aiprojects.dev/${page}">`)
+                .replace(/<meta name="twitter:title" content=".*?">/, `<meta name="twitter:title" content="${title}">`)
+                .replace(/<meta property="og:description" content=".*?">/, `<meta property="og:description" content="${description}">`)
+                .replace(/<meta name="twitter:description" content=".*?">/, `<meta name="twitter:description" content="${description}">`)
+                .replace(/<meta property="og:image" content=".*?">/, `<meta property="og:image" content="${image}">`)
+                .replace(/<meta name="twitter:image" content=".*?">/, `<meta name="twitter:image" content="${image}">`);
+
+            res.status(200).set({ "Content-Type": "text/html" }).end(html);
+        } catch (e) {
+            vite.ssrFixStacktrace(e);
+            next(e);
+        }
+    });
+
+    app.listen(port, () => {
+        console.log(`Server running at http://localhost:${port}`);
+    });
 }
 
-// Handle all routes - just inject meta tags, let Vue handle the rest
-app.use(async (req, res, next) => {
-    // Skip if it's a static file request
-    if (req.url.includes('.') && !req.url.includes('.html')) {
-        return next()
-    }
-
-    try {
-        const url = req.originalUrl
-        const route = url.split('?')[0] // Remove query params
-
-        // Get meta data for this route
-        const meta = routeMetaData[route] || routeMetaData['/']
-        const currentUrl = `${req.protocol}://${req.get('host')}${url}`
-
-        // Read the HTML template
-        let template
-        if (!isProduction) {
-            template = await fs.readFile('./index.html', 'utf-8')
-        } else {
-            template = await fs.readFile('./dist/index.html', 'utf-8')
-        }
-
-        // Generate meta tags HTML
-        const metaTagsHtml = `
-      <title>${meta.title}</title>
-      <meta name="description" content="${meta.description}">
-      <meta property="og:title" content="${meta.title}">
-      <meta property="og:description" content="${meta.description}">
-      <meta property="og:image" content="${meta.image}">
-      <meta property="og:url" content="${currentUrl}">
-      <meta property="og:type" content="website">
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="${meta.title}">
-      <meta name="twitter:description" content="${meta.description}">
-      <meta name="twitter:image" content="${meta.image}">
-      <link rel="canonical" href="${currentUrl}">
-    `
-
-        // Replace placeholder with meta tags
-        const responseHtml = template.replace(`<!--meta-tags-->`, metaTagsHtml)
-
-        res.status(200).set({ 'Content-Type': 'text/html' }).send(responseHtml)
-    } catch (e) {
-        console.log(e.stack)
-        res.status(500).end(e.stack)
-    }
-})
-
-app.listen(port, () => {
-    console.log(`Server started at http://localhost:${port}`)
-})
+createServer();
