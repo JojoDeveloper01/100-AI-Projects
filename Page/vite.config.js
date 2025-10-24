@@ -10,10 +10,11 @@ export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
-    Terminal({
+    ...(process.env.NODE_ENV === 'development' ? [Terminal({
       console: 'terminal',
       output: ['terminal', 'console']
-    })],
+    })] : [])
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
