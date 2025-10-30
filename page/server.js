@@ -63,12 +63,12 @@ app.use('*all', async (req, res) => {
     const description = page ? t[page]?.description_meta ?? t.description_meta : t.description_meta
     const keywords = page ? t[page]?.keywords_meta ?? t.keywords_meta : t.keywords_meta
     const image = page && page !== 'contact'
-      ? `https://100aiprojects.dev/shots/${page}_shot.png`
-      : 'https://100aiprojects.dev/shots/100_AI_Projects_shot.png'
+      ? `https://100aiprojects.dev/shots/${page}_shot.webp`
+      : 'https://100aiprojects.dev/shots/100_AI_Projects_shot.webp'
 
     const traduxHead = `
       <title>${title}</title>
-      
+
       <meta name="theme-color" content="#0f0f21">
       <meta name="description" content="${description}">
       <meta name="keywords" content="${keywords}">

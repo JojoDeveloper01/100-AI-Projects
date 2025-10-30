@@ -10,7 +10,7 @@ export const routesConfig = [
         meta: {
             title: t.title_meta,
             description: t.description_meta,
-            image: '/shots/100_AI_Projects_shot.png'
+            image: '/shots/100_AI_Projects_shot.webp'
         }
     },
     {
@@ -19,7 +19,7 @@ export const routesConfig = [
         meta: {
             title: t.contact.title_meta,
             description: t.contact.description_meta,
-            image: '/shots/100_AI_Projects_shot.png'
+            image: '/shots/100_AI_Projects_shot.webp'
         }
     },
     {
