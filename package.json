@@ -8,5 +8,8 @@
         "build": "pnpm --dir ./page run build",
         "preview": "pnpm --dir ./page run preview",
         "i:page": "pnpm --dir ./page install"
+    },
+    "devDependencies": {
+        "rollup-plugin-visualizer": "^6.0.5"
     }
 }
