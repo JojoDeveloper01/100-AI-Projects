@@ -2,6 +2,8 @@ import { createSSRApp } from 'vue'
 import { createAppRouter } from './router'
 import App from './App.vue'
 import Tres from '@tresjs/core'
+import 'highlight.js/styles/tokyo-night-dark.css'
+import 'highlight.js/lib/common'
 
 // SSR requires a fresh app instance per request, therefore we export a function
 // that creates a fresh app instance. If using Vuex, we'd also be creating a

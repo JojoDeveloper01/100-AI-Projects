@@ -16,6 +16,7 @@
     "@tresjs/core": "5.1.0",
     "compression": "1.8.1",
     "express": "5.1.0",
+    "highlight.js": "11.11.1",
     "sirv": "3.0.2",
     "tailwindcss": "4.1.16",
     "three": "0.180.0",
