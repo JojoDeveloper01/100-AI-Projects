@@ -1,0 +1,296 @@
+{
+  "title": "100 projets",
+  "categories": {
+    "all": "Tout",
+    "nlp": "Traitement du langage naturel",
+    "computerVision": "Vision informatique",
+    "machineLearning": "Machine à apprendre",
+    "generativeAI": "Générateur AI",
+    "dataScience": "Science des données",
+    "developersTools": "Outils Développeurs",
+    "robotics": "Robotique",
+    "finance": "financière"
+  },
+  "status": {
+    "completed": "complétée",
+    "inProgress": "en progrès",
+    "planning": "Planification"
+  },
+  "difficulty": {
+    "simple": "simple",
+    "intermediate": "Intermédiaire",
+    "advanced": "avancée",
+    "expert": "spécialiste"
+  },
+  "navigation": {
+    "projects": "Projets",
+    "contact": "Contacts"
+  },
+  "hero": {
+    "subtitle": "Une collection complète de projets d’intelligence artificielle montrant la puissance des technologies d’IA modernes.",
+    "totalProjects": "Projets Total",
+    "categories": "Catégories",
+    "search": "Les projets de recherche..."
+  },
+  "projects": {
+    "projectFound": "Projet trouvé",
+    "projectsNotFound": "Aucun projet trouvé",
+    "fixYourSearch": "Essayez d'ajuster votre recherche ou votre filtre pour trouver ce que vous recherchez.",
+    "filters": {
+      "newestFirst": "Nouveau d’abord",
+      "oldestFirst": "Le plus ancien d'abord",
+      "titleAToZ": "Titre A-Z",
+      "difficulty": "difficulté",
+      "status": "Statut"
+    },
+    "cards": {
+      "demo": "démo",
+      "code": "Le code",
+      "tradux": {
+        "description": "Bibliothèque JS qui utilise un modèle d'IA pour faciliter la traduction de votre application"
+      }
+    },
+    "backToTop": "Retour au top"
+  },
+  "footer": {
+    "title": "Explorant les frontières de l’intelligence artificielle, un projet à la fois."
+  },
+  "contact": {
+    "title": "travaillons ensemble",
+    "subtitle": "Prêt à donner vie à votre vision de l'IA ? discutons de votre projet et créons quelque chose d'incroyable ensemble.",
+    "form": {
+      "title": "Restez au toucher",
+      "name": "Le nom",
+      "email": "Email à",
+      "message": "Message",
+      "sendMessage": "Envoyer un message",
+      "sending": "Envoyer...",
+      "successMessage": "Message envoyé avec succès !",
+      "successPhrase": "Merci de m'avoir rejoint, les meilleurs regards.",
+      "placeHolders": {
+        "name": "Votre nom",
+        "message": "Parlez-moi de votre projet ou comment je peux vous aider..."
+      }
+    },
+    "sendMeAnEmail": "Envoyez-moi un mail",
+    "connectWithMe": "Connectez-vous avec moi",
+    "title_meta": "100 projets - Contacts",
+    "description_meta": "Connectez-vous avec nous pour des collaborations, des questions ou des discussions sur les projets d'intelligence artificielle et d'apprentissage automatique.",
+    "keywords_meta": "contact, projets d’IA, intelligence artificielle, machine learning, collaboration, enquêtes"
+  },
+  "tradux": {
+    "hero": {
+      "title": "Tradux - Bibliothèque de traduction intelligente",
+      "description": "Bibliothèque de traduction conviviale pour les développeurs qui automatise le processus de gestion du contenu multilingue dans vos projets. Il s'intègre parfaitement avec Cloudflare Workers pour fournir des traductions alimentées par l'IA à l'aide de modèles linguistiques."
+    },
+    "callToAction": {
+      "title": "Commencez à utiliser Tradux aujourd'hui",
+      "description": "Développer vos applications avec un soutien multilingue sans faille à l'aide de Tradux.",
+      "button": "Documentation"
+    },
+    "purpose": {
+      "title": "Objectif",
+      "description": "Tradux résout le problème commun de la gestion des traductions dans les applications modernes en :",
+      "features": {
+        "automating": {
+          "title": "Automatiser les flux de travail de traduction",
+          "description": "Plus de fichiers de traduction manuelle"
+        },
+        "intelligent": {
+          "title": "Fournir des mises à jour intelligentes",
+          "description": "Synchroniser les traductions lorsque votre langue de base change"
+        },
+        "integration": {
+          "title": "Une intégration simple",
+          "description": "Fonctionne avec n'importe quel cadre JavaScript"
+        },
+        "consistency": {
+          "title": "Maintenir la cohérence",
+          "description": "Assure que toutes les langues restent synchronisées avec votre langue par défaut"
+        },
+        "autoSync": {
+          "title": "Synchronisation automatique Config",
+          "description": "Mise à jour automatique des langues disponibles lorsque des fichiers sont ajoutés / supprimés"
+        }
+      }
+    },
+    "keyFeatures": {
+      "title": "Caractéristiques clés",
+      "features": {
+        "aiPowered": {
+          "title": "Traductions basées sur l'IA via l'API Cloudflare Workers",
+          "description": "Travailleur AI - modèle m2m100-1.2b"
+        },
+        "autoSync": {
+          "title": "Synchronisation automatique du langage",
+          "description": "Ajouter / supprimer du contenu dans toutes les langues"
+        },
+        "smartUpdate": {
+          "title": "Système de mise à jour intelligent",
+          "description": "Traduit uniquement le contenu manquant, conserve les traductions existantes"
+        },
+        "autoConfig": {
+          "title": "Gestion des configurations automatiques",
+          "description": "Synchronise automatiquement les langues disponibles avec les fichiers réels"
+        },
+        "frameworkAgnostic": {
+          "title": "Le cadre agnostique",
+          "description": "Fonctionne avec React, Vue, Vanilla JS, Node.js et plus encore"
+        },
+        "simpleCli": {
+          "title": "Une interface simple",
+          "description": "Outils de ligne de commande faciles à utiliser"
+        },
+        "intelligentPath": {
+          "title": "Résolution de chemin intelligent",
+          "description": "Trouve automatiquement les dossiers i18n dans les répertoires publics"
+        },
+        "cookie": {
+          "title": "Intégration des cookies",
+          "description": "Mémoriser les préférences linguistiques de l'utilisateur"
+        }
+      }
+    },
+    "installation": {
+      "title": "Installation",
+      "extraStepNotice": {
+        "title": "Étape supplémentaire requise",
+        "description": "requiert l'exécution de la commande init pour configurer correctement Tradux dans votre projet."
+      }
+    },
+    "setupRequirements": {
+      "title": "Exigences de mise en place",
+      "cloudflare": {
+        "title": "Le compte Cloudflare",
+        "description": "Vous avez besoin de Cloudflare API"
+      },
+      "envVars": {
+        "title": "Variables environnementales",
+        "description": "Créer un fichier .dll avec :"
+      }
+    },
+    "configuration": {
+      "title": "Configuration",
+      "description": "Après l’installation, Tradux crée automatiquement un fichier tradux.config.json :",
+      "options": {
+        "title": "Options de configuration :",
+        "defaultLanguage": "Votre langue de base (par défaut : « en »)",
+        "i18nPath": "Path vers les fichiers de traduction (par défaut: './i18n')",
+        "availableLanguages": "Liste automatique des fichiers linguistiques disponibles"
+      }
+    },
+    "cliUsage": {
+      "title": "CLI Utilisation",
+      "commands": {
+        "viewCommands": {
+          "title": "Voir toutes les commandes disponibles :",
+          "command": "npx tradux"
+        },
+        "initialize": {
+          "title": "Initialize Tradux in your project:",
+          "command": "npx tradux init"
+        },
+        "translate": {
+          "title": "Translate to specific languages:",
+          "commands": {
+            "single": "# Single language\nnpx tradux -t es",
+            "multiple": "# Multiple languages\nnpx tradux -t es,pt,fr",
+            "interactive": "# Interactive mode\nnpx tradux -t"
+          }
+        },
+        "update": {
+          "title": "Update existing translations:",
+          "commands": {
+            "all": "# Update all existing languages\nnpx tradux -u",
+            "specific": "# Update specific languages\nnpx tradux -u es,pt"
+          }
+        },
+        "remove": {
+          "title": "Remove language files:",
+          "commands": {
+            "interactive": "# Interactive removal\nnpx tradux -r",
+            "specific": "# Remove specific languages\nnpx tradux -r es,pt"
+          }
+        },
+        "updateVsTranslate": {
+          "title": "Update vs Translate:",
+          "description": "Update (-u) syncs existing language files with your default language, adding missing content and removing obsolete keys. Translate (-t) creates new translation files. Remove (-r) deletes language files and automatically updates the config."
+        }
+      }
+    },
+    "javascriptApi": {
+      "title": "JavaScript API",
+      "importDescription": "Import Tradux functions in your application:",
+      "coreFunctions": {
+        "title": "Core Functions",
+        "table": {
+          "headers": {
+            "function": "Function/Variable",
+            "purpose": "Purpose",
+            "useCase": "Use Case"
+          },
+          "functions": {
+            "t": {
+              "purpose": "Access translations",
+              "useCase": "t.navigation.home"
+            },
+            "setLanguage": {
+              "purpose": "Switch active language",
+              "useCase": "User language selection"
+            },
+            "currentLanguage": {
+              "purpose": "Current language code",
+              "useCase": "Display current language"
+            },
+            "availableLanguages": {
+              "purpose": "Available language list",
+              "useCase": "Language selector lists"
+            },
+            "config": {
+              "purpose": "Access configuration",
+              "useCase": "View current settings"
+            }
+          }
+        }
+      },
+      "functionDetails": {
+        "title": "Function Details",
+        "setLanguage": {
+          "title": "setLanguage(lang)",
+          "features": {
+            "systemWide": "Changes the active language system-wide",
+            "updates": "Updates the global t object",
+            "localStorage": "Saves preference to localStorage (browser)",
+            "useFor": "Use for: Language switchers, user preferences"
+          }
+        },
+        "currentLanguage": {
+          "title": "currentLanguage",
+          "features": {
+            "returns": "Returns the currently active language code as a string",
+            "useFor": "Use for: Displaying current language, conditional logic"
+          }
+        },
+        "availableLanguages": {
+          "title": "availableLanguages",
+          "features": {
+            "returns": "Returns array of available language codes from config",
+            "useFor": "Use for: Building language selectors, validation"
+          }
+        }
+      }
+    },
+    "title_meta": "Tradux - Bibliothèque de gestion de traduction intelligente",
+    "description_meta": "Bibliothèque de traduction conviviale pour les développeurs qui automatise le processus de gestion du contenu multilingue dans vos projets. Il s'intègre parfaitement avec Cloudflare Workers pour fournir des traductions alimentées par l'IA à l'aide de modèles linguistiques.",
+    "keywords_meta": "Tradux, bibliothèque de traduction, contenu multilingue, Cloudflare Workers, traductions alimentées par l'IA, modèles linguistiques, i18n, localisation, outils de développement",
+    "extraInfoServerUtility": "Tradux fonctionne avec Node.js pour les traductions de backend et peut définir les balises méta de votre site Web en fonction de la langue actuelle.",
+    "seoInternationalization": {
+      "title": "SEO & Internationalisation : Meta Tags dynamiques",
+      "description": "Tradux facilite la mise à jour dynamique des balises méta telles que <html lang=\"...\"> et <title> en fonction de la langue sélectionnée par l'utilisateur.",
+      "details": "Vous pouvez mettre à jour les balises méta dynamiquement dans les applications client (React, Vue, Svelte, Vanilla JS) en utilisant JavaScript, ou sur le serveur en utilisant SSR (Server-Side Rendering) avec des frameworks comme Express, Vite SSR ou AstroJS."
+    }
+  },
+  "title_meta": "100 projets AI - Portefeuille de développement AI",
+  "description_meta": "Explorez une collection complète de 100 projets d'intelligence artificielle présentant des technologies d'IA de pointe, des implémentations d'apprentissage automatique et des solutions innovantes.",
+  "keywords_meta": "projets d’IA, intelligence artificielle, machine learning, deep learning, NLP, vision informatique, AI générative, science des données, portefeuille d’IA"
+}

@@ -1,0 +1,296 @@
+{
+  "title": "100 Projekte",
+  "categories": {
+    "all": "Alle",
+    "nlp": "Natürliche Sprachverarbeitung",
+    "computerVision": "Computer Vision",
+    "machineLearning": "maschinelles Lernen",
+    "generativeAI": "Generation AI",
+    "dataScience": "Datenwissenschaft",
+    "developersTools": "Entwickler Tools",
+    "robotics": "Roboter",
+    "finance": "Finanzen"
+  },
+  "status": {
+    "completed": "abgeschlossen",
+    "inProgress": "im Fortschritt",
+    "planning": "Planung"
+  },
+  "difficulty": {
+    "simple": "Einfache",
+    "intermediate": "Vermittler",
+    "advanced": "fortgeschritten",
+    "expert": "Experten"
+  },
+  "navigation": {
+    "projects": "Projekte",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "subtitle": "Eine umfassende Sammlung von künstlichen Intelligenzprojekten, die die Macht moderner KI-Technologien demonstrieren.",
+    "totalProjects": "Gesamtprojekte",
+    "categories": "Kategorien",
+    "search": "Suche Projekte ..."
+  },
+  "projects": {
+    "projectFound": "Projekt gefunden",
+    "projectsNotFound": "Keine Projekte gefunden",
+    "fixYourSearch": "Versuchen Sie, Ihre Suche oder Filter anzupassen, um zu finden, was Sie suchen.",
+    "filters": {
+      "newestFirst": "Neues zuerst",
+      "oldestFirst": "Erst älter",
+      "titleAToZ": "Titel A-Z",
+      "difficulty": "Schwierigkeiten",
+      "status": "Status"
+    },
+    "cards": {
+      "demo": "Demo",
+      "code": "Der Code",
+      "tradux": {
+        "description": "JS-Bibliothek, die ein AI-Modell verwendet, um die Übersetzung Ihrer App einfach zu gestalten"
+      }
+    },
+    "backToTop": "Zurück zu Top"
+  },
+  "footer": {
+    "title": "Entdecken Sie die Grenzen der künstlichen Intelligenz, ein Projekt zur Zeit."
+  },
+  "contact": {
+    "title": "Lass uns zusammen arbeiten",
+    "subtitle": "Bereit, Ihre AI-Vision zum Leben zu erwecken?Lassen Sie uns Ihr Projekt besprechen und gemeinsam etwas Erstaunliches erschaffen.",
+    "form": {
+      "title": "Gehen Sie in Berührung",
+      "name": "Name ist",
+      "email": "E-Mail",
+      "message": "Botschaft",
+      "sendMessage": "Senden Sie eine Nachricht",
+      "sending": "Senden ...",
+      "successMessage": "Nachricht erfolgreich gesendet!",
+      "successPhrase": "Vielen Dank für die Ankunft.Bester Blick.",
+      "placeHolders": {
+        "name": "Dein Name",
+        "message": "Erzähl mir von deinem Projekt oder wie ich dir helfen kann..."
+      }
+    },
+    "sendMeAnEmail": "Senden Sie mir eine E-Mail",
+    "connectWithMe": "verbinden mit mir",
+    "title_meta": "100 Projekte - Kontakt",
+    "description_meta": "Kontaktieren Sie das Team von 100 AI Projects.Kontaktieren Sie uns für Kooperationen, Fragen oder Diskussionen zu künstlichen Intelligenz- und maschinellen Lernprojekten.",
+    "keywords_meta": "Kontakt, KI-Projekte, künstliche Intelligenz, maschinelles Lernen, Zusammenarbeit, Anfragen"
+  },
+  "tradux": {
+    "hero": {
+      "title": "Tradux - Intelligente Übersetzungsbibliothek",
+      "description": "Entwicklerfreundliche Übersetzungsbibliothek, die den Prozess der Verwaltung mehrsprachiger Inhalte in Ihren Projekten automatisiert und nahtlos mit Cloudflare Workers integriert, um KI-gestützte Übersetzungen mithilfe von Sprachmodellen bereitzustellen."
+    },
+    "callToAction": {
+      "title": "Beginnen Sie heute mit der Verwendung von Tradux",
+      "description": "Ermächtigen Sie Ihre Apps mit nahtloser mehrsprachiger Unterstützung mit Tradux.",
+      "button": "Dokumentation"
+    },
+    "purpose": {
+      "title": "Zweck",
+      "description": "Tradux löst das gemeinsame Problem des Managements von Übersetzungen in modernen Anwendungen durch:",
+      "features": {
+        "automating": {
+          "title": "Automatisierung von Übersetzungsworkflows",
+          "description": "Keine manuellen Übersetzungsdateien mehr"
+        },
+        "intelligent": {
+          "title": "Intelligente Updates bereitstellen",
+          "description": "Synchronisieren von Übersetzungen, wenn sich Ihre Basissprache ändert"
+        },
+        "integration": {
+          "title": "Einfache Integration ermöglichen",
+          "description": "Funktioniert mit jedem JavaScript-Framework"
+        },
+        "consistency": {
+          "title": "Konsistenz bewahren",
+          "description": "Stellen Sie sicher, dass alle Sprachen mit Ihrer Standardsprache synchron bleiben"
+        },
+        "autoSync": {
+          "title": "Auto-Synchronisierung Config",
+          "description": "Automatische Aktualisierungen verfügbarSprachen, wenn Dateien hinzugefügt / entfernt werden"
+        }
+      }
+    },
+    "keyFeatures": {
+      "title": "Schlüsselfunktionen",
+      "features": {
+        "aiPowered": {
+          "title": "KI-fähige Übersetzungen über die Cloudflare Workers API",
+          "description": "Arbeiter AI - m2m100-1.2b Modell"
+        },
+        "autoSync": {
+          "title": "Automatische Sprachsynchronisierung",
+          "description": "Hinzufügen/Entfernen von Inhalten in allen Sprachen"
+        },
+        "smartUpdate": {
+          "title": "Intelligentes Updatesystem",
+          "description": "Übersetzt nur fehlende Inhalte, behält bestehende Übersetzungen"
+        },
+        "autoConfig": {
+          "title": "Das Auto Config Management",
+          "description": "Synchronisiert automatisch verfügbareSprachen mit tatsächlichen Dateien"
+        },
+        "frameworkAgnostic": {
+          "title": "Agnostik Framework",
+          "description": "Funktioniert mit React, Vue, Vanilla JS, Node.js und mehr"
+        },
+        "simpleCli": {
+          "title": "Einfaches CLI Interface",
+          "description": "Einfach zu bedienende Befehlszeilen-Tools"
+        },
+        "intelligentPath": {
+          "title": "Intelligente Lösungspfade",
+          "description": "Sucht automatisch i18n-Ordner in öffentlichen Verzeichnissen"
+        },
+        "cookie": {
+          "title": "Cookie Integration",
+          "description": "Erinnert sich an die Sprachpräferenzen des Benutzers"
+        }
+      }
+    },
+    "installation": {
+      "title": "Installation",
+      "extraStepNotice": {
+        "title": "Zusätzliche Schritte erforderlich",
+        "description": "erfordert, dass der init-Befehl ausgeführt wird, um Tradux in Ihrem Projekt ordnungsgemäß einzurichten."
+      }
+    },
+    "setupRequirements": {
+      "title": "Setup Anforderungen",
+      "cloudflare": {
+        "title": "Cloudflare Konto",
+        "description": "Sie benötigen Cloudflare API-Auskünfte"
+      },
+      "envVars": {
+        "title": "Umweltvariablen",
+        "description": "Erstellen Sie eine .env-Datei mit:"
+      }
+    },
+    "configuration": {
+      "title": "Konfiguration",
+      "description": "Nach der Installation erstellt Tradux automatisch eine Tradux.config.json-Datei:",
+      "options": {
+        "title": "Optionen der Konfiguration:",
+        "defaultLanguage": "Ihre Basissprache (Default: 'en')",
+        "i18nPath": "Path zu Übersetzungsdateien (Standard: './i18n')",
+        "availableLanguages": "Automatische Verwaltung der verfügbaren Sprachdateien"
+      }
+    },
+    "cliUsage": {
+      "title": "CLI Verwendung",
+      "commands": {
+        "viewCommands": {
+          "title": "Alle verfügbaren Befehle anzeigen:",
+          "command": "npx tradux"
+        },
+        "initialize": {
+          "title": "Initialize Tradux in your project:",
+          "command": "npx tradux init"
+        },
+        "translate": {
+          "title": "Translate to specific languages:",
+          "commands": {
+            "single": "# Single language\nnpx tradux -t es",
+            "multiple": "# Multiple languages\nnpx tradux -t es,pt,fr",
+            "interactive": "# Interactive mode\nnpx tradux -t"
+          }
+        },
+        "update": {
+          "title": "Update existing translations:",
+          "commands": {
+            "all": "# Update all existing languages\nnpx tradux -u",
+            "specific": "# Update specific languages\nnpx tradux -u es,pt"
+          }
+        },
+        "remove": {
+          "title": "Remove language files:",
+          "commands": {
+            "interactive": "# Interactive removal\nnpx tradux -r",
+            "specific": "# Remove specific languages\nnpx tradux -r es,pt"
+          }
+        },
+        "updateVsTranslate": {
+          "title": "Update vs Translate:",
+          "description": "Update (-u) syncs existing language files with your default language, adding missing content and removing obsolete keys. Translate (-t) creates new translation files. Remove (-r) deletes language files and automatically updates the config."
+        }
+      }
+    },
+    "javascriptApi": {
+      "title": "JavaScript API",
+      "importDescription": "Import Tradux functions in your application:",
+      "coreFunctions": {
+        "title": "Core Functions",
+        "table": {
+          "headers": {
+            "function": "Function/Variable",
+            "purpose": "Purpose",
+            "useCase": "Use Case"
+          },
+          "functions": {
+            "t": {
+              "purpose": "Access translations",
+              "useCase": "t.navigation.home"
+            },
+            "setLanguage": {
+              "purpose": "Switch active language",
+              "useCase": "User language selection"
+            },
+            "currentLanguage": {
+              "purpose": "Current language code",
+              "useCase": "Display current language"
+            },
+            "availableLanguages": {
+              "purpose": "Available language list",
+              "useCase": "Language selector lists"
+            },
+            "config": {
+              "purpose": "Access configuration",
+              "useCase": "View current settings"
+            }
+          }
+        }
+      },
+      "functionDetails": {
+        "title": "Function Details",
+        "setLanguage": {
+          "title": "setLanguage(lang)",
+          "features": {
+            "systemWide": "Changes the active language system-wide",
+            "updates": "Updates the global t object",
+            "localStorage": "Saves preference to localStorage (browser)",
+            "useFor": "Use for: Language switchers, user preferences"
+          }
+        },
+        "currentLanguage": {
+          "title": "currentLanguage",
+          "features": {
+            "returns": "Returns the currently active language code as a string",
+            "useFor": "Use for: Displaying current language, conditional logic"
+          }
+        },
+        "availableLanguages": {
+          "title": "availableLanguages",
+          "features": {
+            "returns": "Returns array of available language codes from config",
+            "useFor": "Use for: Building language selectors, validation"
+          }
+        }
+      }
+    },
+    "title_meta": "Tradux - Intelligente Übersetzungsmanagementbibliothek",
+    "description_meta": "Entwicklerfreundliche Übersetzungsbibliothek, die den Prozess der Verwaltung mehrsprachiger Inhalte in Ihren Projekten automatisiert und nahtlos mit Cloudflare Workers integriert, um KI-gestützte Übersetzungen mithilfe von Sprachmodellen bereitzustellen.",
+    "keywords_meta": "Tradux, Übersetzungsbibliothek, mehrsprachige Inhalte, Cloudflare Workers, KI-gestützte Übersetzungen, Sprachmodelle, i18n, Lokalisierung, Entwickler-Tools",
+    "extraInfoServerUtility": "Tradux arbeitet mit Node.js für Backend-Übersetzungen und kann die Meta-Tags Ihrer Website entsprechend der aktuellen Sprache einstellen.",
+    "seoInternationalization": {
+      "title": "SEO & Internationalisierung: Dynamische Meta Tags",
+      "description": "Tradux erleichtert die dynamische Aktualisierung von Meta-Tags wie <html lang=\"...\"> und <title> basierend auf der ausgewählten Sprache des Benutzers.",
+      "details": "Sie können Meta-Tags dynamisch in Client-Side-Apps (React, Vue, Svelte, Vanilla JS) mithilfe von JavaScript oder auf dem Server mithilfe von SSR (Server-Side Rendering) mit Frameworks wie Express, Vite SSR oder AstroJS aktualisieren."
+    }
+  },
+  "title_meta": "100 KI-Projekte - AI-Entwicklungs-Portfolio",
+  "description_meta": "Entdecken Sie eine umfassende Sammlung von 100 künstlichen Intelligenzprojekten, die hochmoderne KI-Technologien, maschinelle Lernimplementierungen und innovative Lösungen vorstellen.",
+  "keywords_meta": "KI-Projekte, künstliche Intelligenz, maschinelles Lernen, Deep Learning, NLP, Computer Vision, generative KI, Datenwissenschaft, AI-Portfolio"
+}

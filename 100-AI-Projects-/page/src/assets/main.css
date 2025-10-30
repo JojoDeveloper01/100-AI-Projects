@@ -1,0 +1,42 @@
+@import './base.css';
+
+body {
+  background: #0f0f21;
+  background: radial-gradient(circle, rgba(15, 15, 33, 1) 0%, rgba(0, 14, 51, 1) 34%, rgba(10, 0, 69, 1) 74%, rgba(1, 1, 48, 1) 93%, rgba(7, 0, 28, 1) 100%);
+
+  background-attachment: fixed;
+  color: #fff;
+}
+
+a,
+button,
+summary {
+  font-weight: bold;
+  color: #fff;
+  transition: 0.4s;
+  padding: .5rem 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffffff2d;
+    border-radius: 0.3rem;
+  }
+}
+
+.translation-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 400px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+}

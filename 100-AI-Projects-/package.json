@@ -1,0 +1,12 @@
+{
+    "name": "100-ai-projects",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "pnpm --dir ./page dev",
+        "build": "pnpm --dir ./page run build",
+        "preview": "pnpm --dir ./page run preview",
+        "i:page": "pnpm --dir ./page install"
+    }
+}
