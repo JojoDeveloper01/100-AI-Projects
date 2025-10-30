@@ -233,7 +233,7 @@ watch([activeFramework, activePackageManager], async () => {
                 <h2 class="text-5xl font-bold mb-10 text-green-400">{{ t.tradux.keyFeatures.title }}</h2>
                 <div class="space-y-4 flex flex-wrap sm:grid sm:grid-cols-2">
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.aiPowered.title }}</h3>
@@ -241,7 +241,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.autoSync.title }}</h3>
@@ -249,7 +249,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.smartUpdate.title }}</h3>
@@ -257,7 +257,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.autoConfig.title }}</h3>
@@ -265,7 +265,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.frameworkAgnostic.title }}</h3>
@@ -274,7 +274,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.cookie.title }}</h3>
@@ -282,7 +282,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.simpleCli.title }}</h3>
@@ -290,7 +290,7 @@ watch([activeFramework, activePackageManager], async () => {
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-green-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <h3 class="text-xl font-semibold text-green-300">{{
                                 t.tradux.keyFeatures.features.intelligentPath.title }}</h3>
@@ -345,7 +345,7 @@ watch([activeFramework, activePackageManager], async () => {
                         class="mt-4 p-4 rounded-lg bg-orange-500/10 border border-orange-400/20">
                         <div class="flex items-start gap-3">
                             <div
-                                class="w-5 h-5 rounded-full bg-orange-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                class="w-5 h-5 rounded-full bg-orange-400 flex items-center justify-center shrink-0 mt-0.5">
                                 <span class="text-xs font-bold text-black">!</span>
                             </div>
                             <div>
@@ -406,20 +406,20 @@ CLOUDFLARE_API_TOKEN=your_api_token</code></pre>
                 <h3 class="text-xl font-semibold text-cyan-300 mb-4">{{ t.tradux.configuration.options.title }}</h3>
                 <div class="space-y-3">
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <code class="text-cyan-300">defaultLanguage</code> - {{
                                 t.tradux.configuration.options.defaultLanguage }}
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <code class="text-cyan-300">i18nPath</code> - {{ t.tradux.configuration.options.i18nPath }}
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></div>
+                        <div class="w-2 h-2 bg-cyan-400 rounded-full mt-3 shrink-0"></div>
                         <div>
                             <code class="text-cyan-300">availableLanguages</code> - {{
                                 t.tradux.configuration.options.availableLanguages }}
@@ -595,19 +595,19 @@ npx tradux -r es,pt</code></pre>
                             t.tradux.javascriptApi.functionDetails.setLanguage.title }}</h4>
                         <ul class="space-y-2 text-gray-300 mb-4">
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 {{ t.tradux.javascriptApi.functionDetails.setLanguage.features.systemWide }}
                             </li>
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 {{ t.tradux.javascriptApi.functionDetails.setLanguage.features.updates }}
                             </li>
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 {{ t.tradux.javascriptApi.functionDetails.setLanguage.features.localStorage }}
                             </li>
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.setLanguage.features.useFor
                                     }}</strong>
                             </li>
@@ -624,11 +624,11 @@ npx tradux -r es,pt</code></pre>
                             t.tradux.javascriptApi.functionDetails.currentLanguage.title }}</h4>
                         <ul class="space-y-2 text-gray-300 mb-4">
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 {{ t.tradux.javascriptApi.functionDetails.currentLanguage.features.returns }}
                             </li>
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.currentLanguage.features.useFor
                                     }}</strong>
                             </li>
@@ -645,11 +645,11 @@ npx tradux -r es,pt</code></pre>
                             t.tradux.javascriptApi.functionDetails.availableLanguages.title }}</h4>
                         <ul class="space-y-2 text-gray-300 mb-4">
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 {{ t.tradux.javascriptApi.functionDetails.availableLanguages.features.returns }}
                             </li>
                             <li class="flex items-start gap-2">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 shrink-0"></div>
                                 <strong>{{ t.tradux.javascriptApi.functionDetails.availableLanguages.features.useFor
                                 }}</strong>
                             </li>
