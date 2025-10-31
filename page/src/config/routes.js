@@ -2,7 +2,6 @@ import { t, initialized } from 'tradux'
 
 await initialized
 
-// Shared route configuration with meta data
 export const routesConfig = [
     {
         path: '/',
@@ -28,7 +27,7 @@ export const routesConfig = [
         meta: {
             title: t.tradux.title_meta,
             description: t.tradux.description_meta,
-            image: '/shots/tradux_shot.png'
+            image: '/shots/tradux_shot.webp'
         }
     }
 ]

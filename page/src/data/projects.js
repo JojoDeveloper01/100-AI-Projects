@@ -9,7 +9,7 @@ export const projects = (t) => [
         difficulty: t.difficulty.intermediate,
         demoUrl: "/tradux",
         githubUrl: "https://github.com/JojoDeveloper01/Tradux",
-        image: "/shots/tradux_shot.png",
+        image: "/shots/tradux_shot.webp",
         completedDate: "2025-09-9"
     },
     /*  {
