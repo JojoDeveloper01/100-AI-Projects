@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node server",
-    "build": "vite build --outDir dist/client",
-    "preview": "cross-env NODE_ENV=production node server"
+    "dev": "node scripts/sync-i18n-config.mjs && node server",
+    "build": "node scripts/sync-i18n-config.mjs && vite build --outDir dist/client && node scripts/prerender-static.mjs",
+    "preview": "vite preview --outDir dist/client"
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "2.1.0",

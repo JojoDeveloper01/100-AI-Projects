@@ -20,13 +20,27 @@ const routes = routesConfig.map((route) => ({
           : null,
 }));
 
+const localizedRoutes = routesConfig.map((route) => ({
+  ...route,
+  path: route.path === "/" ? "/:lang([a-z]{2,3})" : `/:lang([a-z]{2,3})${route.path}`,
+  name: `${route.name}Localized`,
+  component:
+    route.name === "Projects"
+      ? Projects
+      : route.name === "Contact"
+        ? Contact
+        : route.name === "Tradux"
+          ? Tradux
+          : null,
+}));
+
 export function createAppRouter() {
   return createRouter({
     history:
       typeof window !== "undefined"
         ? createWebHistory()
         : createMemoryHistory(),
-    routes,
+    routes: [...localizedRoutes, ...routes],
     scrollBehavior(to, from, savedPosition) {
       if (to.hash) {
         return {

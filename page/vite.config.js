@@ -1,4 +1,3 @@
-import { templateCompilerOptions } from "@tresjs/core";
 import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -10,11 +9,8 @@ const isSplineElement = (tag) => tag === "spline-viewer";
 export default defineConfig({
   plugins: [
     vue({
-      ...templateCompilerOptions,
       template: {
-        ...templateCompilerOptions.template,
         compilerOptions: {
-          ...templateCompilerOptions.template?.compilerOptions,
           isCustomElement: isSplineElement,
         },
       },

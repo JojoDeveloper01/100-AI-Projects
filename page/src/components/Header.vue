@@ -1,12 +1,29 @@
 <script setup>
-import { useRoute } from "vue-router";
+import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useTradux } from "tradux/vue";
 
 const route = useRoute();
+const router = useRouter();
 const { t, currentLanguage, setLanguage, getAvailableLanguages } = useTradux();
 
+const localizedPath = (path = "/") => {
+  const lang = currentLanguage.value || "en";
+  return path === "/" ? `/${lang}/` : `/${lang}${path}`;
+};
+
+const currentBasePath = computed(() => {
+  const lang = route.params.lang;
+  const prefix = typeof lang === "string" ? `/${lang}` : "";
+  const path = route.path.startsWith(prefix) ? route.path.slice(prefix.length) : route.path;
+  return path || "/";
+});
+
 const changeLanguage = async (newLang) => {
-  await setLanguage(newLang);
+  if (await setLanguage(newLang)) {
+    const path = currentBasePath.value === "/" ? `/${newLang}/` : `/${newLang}${currentBasePath.value}`;
+    router.push(path);
+  }
 };
 </script>
 
@@ -16,7 +33,7 @@ const changeLanguage = async (newLang) => {
       <div class="mx-auto flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <router-link
-            to="/"
+            :to="localizedPath('/')"
             class="size-8 bg-black rounded-lg flex items-center justify-center font-semibold text-xl hover:text-purple-300 transition-colors"
           >
             <span class="font-bold text-sm">AI</span>
@@ -24,10 +41,10 @@ const changeLanguage = async (newLang) => {
         </div>
         <div class="flex items-center space-x-8">
           <router-link
-            to="/#projects"
+            :to="`${localizedPath('/')}#projects`"
             :class="[
               'transition-colors',
-              route.name === 'Projects'
+              route.name === 'Projects' || route.name === 'ProjectsLocalized'
                 ? 'text-blue-400 font-medium'
                 : 'text-gray-300 hover:',
             ]"
@@ -35,10 +52,10 @@ const changeLanguage = async (newLang) => {
             {{ t.navigation.projects }}
           </router-link>
           <router-link
-            to="/contact"
+            :to="localizedPath('/contact')"
             :class="[
               'transition-colors',
-              route.name === 'Contact'
+              route.name === 'Contact' || route.name === 'ContactLocalized'
                 ? 'text-blue-400 font-medium'
                 : 'text-gray-300 hover:',
             ]"
