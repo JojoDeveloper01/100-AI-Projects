@@ -49,8 +49,10 @@ async function loadEnvFile(filePath) {
 }
 
 const contactConfig = {
-  from: "100 AI Projects <contact@100aiprojects.dev>",
-  to: "josethbalcazar@gmail.com",
+  from:
+    process.env.CONTACT_FROM_EMAIL ||
+    "100 AI Projects <contact@100aiprojects.dev>",
+  to: process.env.CONTACT_TO_EMAIL,
 };
 
 const normalizeContactPayload = (body = {}) => ({
@@ -110,6 +112,11 @@ app.post("/api/contact", async (req, res) => {
 
   if (!resendApiKey) {
     console.error("Missing RESEND_API_KEY for contact form.");
+    return res.status(500).json({ ok: false, code: "email_not_configured" });
+  }
+
+  if (!contactConfig.to) {
+    console.error("Missing CONTACT_TO_EMAIL for contact form.");
     return res.status(500).json({ ok: false, code: "email_not_configured" });
   }
 
