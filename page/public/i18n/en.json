@@ -25,6 +25,13 @@
     "advanced": "Advanced",
     "expert": "Expert"
   },
+  "common": {
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "loading": {
+    "globe": "Loading globe..."
+  },
   "navigation": {
     "projects": "Projects",
     "contact": "Contact"
@@ -50,7 +57,7 @@
       "demo": "Demo",
       "code": "Code",
       "tradux": {
-        "description": "Automate multilingual content with a developer-friendly translation library powered by AI and Cloudflare Workers."
+        "description": "Automate multilingual content with a developer-friendly translation library powered by configurable AI providers."
       }
     },
     "backToTop": "Back to Top"
@@ -75,7 +82,14 @@
       "successPhrase": "Thank you for reaching out. Best regards.",
       "placeHolders": {
         "name": "Your Name",
+        "email": "your@email.com",
         "message": "Tell me about your project or how I can help you..."
+      },
+      "errors": {
+        "name": "Please enter a name between 2 and 80 characters.",
+        "email": "Please enter a valid email address.",
+        "message": "Please enter a message between 10 and 2000 characters.",
+        "submit": "We could not send your message right now. Please try again later."
       }
     },
     "sendMeAnEmail": "Send Me An Email",
@@ -83,12 +97,19 @@
   },
   "tradux": {
     "title_meta": "Tradux - Intelligent Translation Management Library",
-    "description_meta": "Automate multilingual content with a developer-friendly translation library powered by AI and Cloudflare Workers.",
-    "keywords_meta": "Tradux, translation library, multilingual content, Cloudflare Workers, AI-powered translations, language models, i18n, localization, developer tools",
-    "extraInfoServerUtility": "Tradux works with Node.js for backend translations and can set the meta tags of your website according to the current language.",
+    "description_meta": "Automate multilingual content with a developer-friendly translation library powered by AI providers such as OpenRouter, OpenAI, Anthropic, Google, and Cloudflare.",
+    "keywords_meta": "Tradux, translation library, multilingual content, OpenRouter, OpenAI, Anthropic, Google AI, Cloudflare Workers, AI-powered translations, language models, i18n, localization, developer tools",
+    "extraInfoServerUtility": "Tradux provides runtime entrypoints for browser apps, Node SSR, edge runtimes, and Astro so each environment imports the right bundle.",
+    "selectFramework": "Select framework:",
+    "readme": {
+      "loading": "Loading the latest Tradux README...",
+      "error": "We couldn't load the latest Tradux README right now.",
+      "retry": "Try again",
+      "officialEnglishNotice": "The documentation below is rendered directly from the official Tradux repository README, so it is shown in English to stay in sync with the source."
+    },
     "hero": {
       "title": "Tradux - Intelligent Translation Library",
-      "description": "Developer-friendly translation library that automates the process of managing multilingual content in your projects. It seamlessly integrates with Cloudflare Workers to provide AI-powered translations using language models."
+      "description": "Developer-friendly translation library that automates multilingual content across your projects. The new provider-aware setup works with OpenRouter, OpenAI, Anthropic, Google, and Cloudflare while keeping simple framework hooks for Vue and other apps."
     },
     "callToAction": {
       "title": "Start Using Tradux Today",
@@ -291,6 +312,40 @@
           }
         }
       }
+    },
+    "examples": {
+      "title": "Examples",
+      "description": "Tradux provides sub-path exports for your favorite frameworks. These hooks automatically fetch translations and provide a reactive state."
+    },
+    "globalState": {
+      "title": "Global State & Reusability",
+      "description": "Tradux uses a shared memory cache. If you have multiple translated components on a single page, you do not need to manage loading states for all of them.",
+      "details": "Initialize Tradux once at the root of your app. Child components will instantly receive translations with zero network requests or loading flicker.",
+      "rootComponent": "The Root Component",
+      "childComponent": "The Child Component"
+    },
+    "ssrRouting": {
+      "title": "SEO & Server-Side Routing",
+      "description": "For search engines to index your translated content, languages should be tied to the URL (e.g. mysite.com/es/about). Search engines ignore local storage and cookies.",
+      "details": "Tradux supports this natively. Instead of using setLanguage() (which relies on cookies), use your framework's router to extract the language from the URL and pass it directly to Tradux.",
+      "astroExample": "Astro SSR Example",
+      "expressExample": "Express & Vite SSR Example",
+      "expressDescription": "When using custom SSR setups, you can use Tradux isolated instances to intercept requests, read the translation file on the server, and inject the correct html lang and title tags into your HTML before serving it to the client."
+    },
+    "cliInternals": {
+      "title": "How the CLI Works",
+      "autoHealer": {
+        "title": "The Auto-Healer",
+        "description": "Whenever you run a Tradux CLI command, the system validates your setup. If you manually delete a language file like pt.json, Tradux automatically removes it from your tradux.config.json array. If your folder paths get misconfigured, the CLI attempts to correct them safely."
+      },
+      "differential": {
+        "title": "Differential Translation (.tradux-state.json)",
+        "description": "When you translate files, Tradux leaves a hidden .tradux-state.json file in your i18n folder to act as a state snapshot. When you run npx tradux -u, Tradux compares your current en.json against this snapshot and sends only the differences to the Cloudflare API."
+      }
+    },
+    "fileStructure": {
+      "title": "File Structure",
+      "description": "After setup, your project will look similar to this:"
     }
   }
 }

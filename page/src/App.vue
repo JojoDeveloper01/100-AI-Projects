@@ -1,3 +1,9 @@
+<script setup>
+import { useTradux } from "tradux/vue";
+
+const { isReady } = useTradux();
+</script>
+
 <template>
-  <router-view />
+  <router-view v-if="isReady" />
 </template>

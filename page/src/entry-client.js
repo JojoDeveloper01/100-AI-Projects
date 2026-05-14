@@ -1,8 +1,13 @@
-import './assets/main.css'
+import "./assets/main.css";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
-import { createApp } from './main'
+import { createApp } from "./main";
+import { initVueTradux } from "tradux/vue";
 
-const { app } = createApp()
+const traduxReady = initVueTradux();
 
-app.use(hljsVuePlugin)
-app.mount('body')
+const { app, router } = createApp();
+app.use(hljsVuePlugin);
+
+await Promise.all([router.isReady(), traduxReady]);
+
+app.mount("#app");

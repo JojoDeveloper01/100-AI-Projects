@@ -9,12 +9,15 @@
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
         </svg>
-        <span v-if="showText">{{ isShowingFeedback ? 'Copied!' : 'Copy' }}</span>
+        <span v-if="showText">{{ isShowingFeedback ? t.common.copied : t.common.copy }}</span>
     </button>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useTradux } from 'tradux/vue'
+
+const { t } = useTradux()
 
 const props = defineProps({
     text: {

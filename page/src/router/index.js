@@ -1,36 +1,45 @@
-import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
-import Projects from '@/views/Projects.vue'
-import Contact from '@/views/Contact.vue'
-import Tradux from '@/views/Tradux.vue'
-import { routesConfig } from '@/config/routes.js'
+import {
+  createRouter,
+  createWebHistory,
+  createMemoryHistory,
+} from "vue-router";
+import Projects from "@/views/Projects.vue";
+import Contact from "@/views/Contact.vue";
+import Tradux from "@/views/Tradux.vue";
+import { routesConfig } from "@/config/routes.js";
 
-// Add components to route config
-const routes = routesConfig.map(route => ({
+const routes = routesConfig.map((route) => ({
   ...route,
-  component: route.name === 'Projects' ? Projects :
-    route.name === 'Contact' ? Contact :
-      route.name === 'Tradux' ? Tradux : null
-}))
+  component:
+    route.name === "Projects"
+      ? Projects
+      : route.name === "Contact"
+        ? Contact
+        : route.name === "Tradux"
+          ? Tradux
+          : null,
+}));
 
-// Create router factory function
 export function createAppRouter() {
   return createRouter({
-    history: typeof window !== 'undefined' ? createWebHistory() : createMemoryHistory(),
+    history:
+      typeof window !== "undefined"
+        ? createWebHistory()
+        : createMemoryHistory(),
     routes,
     scrollBehavior(to, from, savedPosition) {
       if (to.hash) {
         return {
           el: to.hash,
-          behavior: 'smooth'
-        }
+          behavior: "smooth",
+        };
       }
       if (savedPosition) {
-        return savedPosition
+        return savedPosition;
       }
-      return { top: 0 }
-    }
-  })
+      return { top: 0 };
+    },
+  });
 }
 
-// Export default router for compatibility
-export default createAppRouter()
+export default createAppRouter();

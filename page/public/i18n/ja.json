@@ -22,6 +22,13 @@
     "advanced": "進歩",
     "expert": "専門家"
   },
+  "common": {
+    "copy": "コピー",
+    "copied": "コピーしました!"
+  },
+  "loading": {
+    "globe": "地球儀を読み込み中..."
+  },
   "navigation": {
     "projects": "プロジェクト",
     "contact": "コンタクト"
@@ -47,7 +54,7 @@
       "demo": "デモ",
       "code": "コード",
       "tradux": {
-        "description": "アプリの翻訳を容易にするためにAIモデルを使用するJSライブラリ"
+        "description": "設定可能な AI プロバイダーで動く開発者向け翻訳ライブラリで、多言語コンテンツを自動化します。"
       }
     },
     "backToTop": "トップへ戻る"
@@ -69,7 +76,14 @@
       "successPhrase": "来てくれてありがとう!おめでとうございます。",
       "placeHolders": {
         "name": "君の名前",
+        "email": "your@email.com",
         "message": "あなたのプロジェクトや、私がどのようにあなたを助けることができるかについて教えてください。"
+      },
+      "errors": {
+        "name": "2〜80文字の名前を入力してください。",
+        "email": "有効なメールアドレスを入力してください。",
+        "message": "10〜2000文字のメッセージを入力してください。",
+        "submit": "現在メッセージを送信できませんでした。後でもう一度お試しください。"
       }
     },
     "sendMeAnEmail": "メールを送信",
@@ -81,7 +95,7 @@
   "tradux": {
     "hero": {
       "title": "Tradux - インテリジェント翻訳図書館",
-      "description": "プロジェクトにおける多言語コンテンツの管理プロセスを自動化する開発者フレンドリーな翻訳ライブラリで、言語モデルを使用してAI駆動の翻訳を提供するためにCloudflare Workersとシームレスに統合します。"
+      "description": "プロジェクト内の多言語コンテンツを自動化する、開発者向けの翻訳ライブラリです。新しいプロバイダー対応設定は OpenRouter、OpenAI、Anthropic、Google、Cloudflare で動作し、Vue などのアプリ向けにシンプルなフックを維持します。"
     },
     "callToAction": {
       "title": "今日からTraduxを使い始める。",
@@ -281,13 +295,54 @@
       }
     },
     "title_meta": "Tradux - インテリジェント翻訳管理図書館",
-    "description_meta": "プロジェクトにおける多言語コンテンツの管理プロセスを自動化する開発者フレンドリーな翻訳ライブラリで、言語モデルを使用してAI駆動の翻訳を提供するためにCloudflare Workersとシームレスに統合します。",
-    "keywords_meta": "Tradux、翻訳ライブラリ、多言語コンテンツ、Cloudflare Workers、AI駆動翻訳、言語モデル、i18n、ローカライゼーション、開発ツール",
-    "extraInfoServerUtility": "Tradux は、バックエンド翻訳のために Node.js で動作し、現在の言語に応じてウェブサイトのメタタグを設定できます。",
+    "description_meta": "OpenRouter、OpenAI、Anthropic、Google、Cloudflare などの AI プロバイダーで動く、開発者向け翻訳ライブラリで多言語コンテンツを自動化します。",
+    "keywords_meta": "Tradux、翻訳ライブラリ、多言語コンテンツ、OpenRouter、OpenAI、Anthropic、Google AI、Cloudflare Workers、AI駆動翻訳、言語モデル、i18n、ローカライゼーション、開発ツール",
+    "extraInfoServerUtility": "Tradux はブラウザーアプリ、Node SSR、Edge runtime、Astro 向けの runtime entrypoint を提供し、各環境で適切な bundle を import できます。",
+    "selectFramework": "フレームワークを選択:",
+    "readme": {
+      "loading": "最新の Tradux README を読み込んでいます...",
+      "error": "現在、最新の Tradux README を読み込めませんでした。",
+      "retry": "再試行",
+      "officialEnglishNotice": "以下のドキュメントは Tradux リポジトリの公式 README から直接レンダリングされるため、元の内容と同期するよう英語で表示されます。"
+    },
     "seoInternationalization": {
       "title": "SEO & 国際化:ダイナミックメタタグ",
       "description": "Tradux は、ユーザーが選択した言語に基づいて <html lang=\"...\"> および <title> などのメタタグを動的に更新することを容易にします。",
       "details": "JavaScript を使用してクライアント側のアプリケーション (React、Vue、Svelte、Vanilla JS) でメタタグをダイナミックに更新するか、Express、Vite SSR、AstroJS などのフレームワークを使用してサーバーで SSR (Server-Side Rendering) を使用することもできます。"
+    },
+    "examples": {
+      "title": "Examples",
+      "description": "Tradux provides sub-path exports for your favorite frameworks. These hooks automatically fetch translations and provide a reactive state."
+    },
+    "globalState": {
+      "title": "Global State & Reusability",
+      "description": "Tradux uses a shared memory cache. If you have multiple translated components on a single page, you do not need to manage loading states for all of them.",
+      "details": "Initialize Tradux once at the root of your app. Child components will instantly receive translations with zero network requests or loading flicker.",
+      "rootComponent": "The Root Component",
+      "childComponent": "The Child Component"
+    },
+    "ssrRouting": {
+      "title": "SEO & Server-Side Routing",
+      "description": "For search engines to index your translated content, languages should be tied to the URL (e.g. mysite.com/es/about). Search engines ignore local storage and cookies.",
+      "details": "Tradux supports this natively. Instead of using setLanguage() (which relies on cookies), use your framework's router to extract the language from the URL and pass it directly to Tradux.",
+      "astroExample": "Astro SSR Example",
+      "expressExample": "Express & Vite SSR Example",
+      "expressDescription": "When using custom SSR setups, you can use Tradux isolated instances to intercept requests, read the translation file on the server, and inject the correct html lang and title tags into your HTML before serving it to the client."
+    },
+    "cliInternals": {
+      "title": "How the CLI Works",
+      "autoHealer": {
+        "title": "The Auto-Healer",
+        "description": "Whenever you run a Tradux CLI command, the system validates your setup. If you manually delete a language file like pt.json, Tradux automatically removes it from your tradux.config.json array. If your folder paths get misconfigured, the CLI attempts to correct them safely."
+      },
+      "differential": {
+        "title": "Differential Translation (.tradux-state.json)",
+        "description": "When you translate files, Tradux leaves a hidden .tradux-state.json file in your i18n folder to act as a state snapshot. When you run npx tradux -u, Tradux compares your current en.json against this snapshot and sends only the differences to the Cloudflare API."
+      }
+    },
+    "fileStructure": {
+      "title": "File Structure",
+      "description": "After setup, your project will look similar to this:"
     }
   },
   "title_meta": "100 AI プロジェクト - AI 開発ポートフォリオ",
