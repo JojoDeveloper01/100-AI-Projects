@@ -1,6 +1,5 @@
 const contactConfig = {
   from: "100 AI Projects <contact@100aiprojects.dev>",
-  to: "josethbalcazar@gmail.com",
 };
 
 const json = (body, status = 200) =>
@@ -58,6 +57,13 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, code: "email_not_configured" }, 500);
   }
 
+  const toEmail = env.CONTACT_TO_EMAIL;
+  const fromEmail = env.CONTACT_FROM_EMAIL || contactConfig.from;
+
+  if (!toEmail) {
+    return json({ ok: false, code: "email_not_configured" }, 500);
+  }
+
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -66,8 +72,8 @@ export async function onRequestPost({ request, env }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: contactConfig.from,
-        to: contactConfig.to,
+        from: fromEmail,
+        to: toEmail,
         reply_to: payload.email,
         subject: `New contact from ${payload.name} — 100 AI Projects`,
         text: `Name: ${payload.name}\nEmail: ${payload.email}\n\nMessage:\n${payload.message}`,

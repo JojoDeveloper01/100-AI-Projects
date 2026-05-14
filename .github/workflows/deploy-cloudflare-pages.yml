@@ -41,6 +41,14 @@ jobs:
         run: |
           npx wrangler pages project create 100-ai-projects --production-branch=main || true
 
+      - name: Sync contact destination to Pages runtime
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
+        run: |
+          printf '%s' "$CONTACT_TO_EMAIL" | npx wrangler pages secret put CONTACT_TO_EMAIL --project-name=100-ai-projects
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
